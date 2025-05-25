@@ -30,7 +30,7 @@ export default function Home() {
             <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-purple-600 p-1">
               <div className="w-full h-full bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/ax.jfif"
+                  src="/ax.jpg"
                   alt="Michael Wiryaseputra"
                   width={128}
                   height={128}
@@ -174,7 +174,7 @@ export default function Home() {
                 <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">Wordcloud</span>
               </div>
               <div className="flex justify-between items-center">
-                <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                <a href="https://github.com/MagicDash91/ML-Engineering-Project/tree/main/Youtube%20Sentiment%20Analysis" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   View Project →
                 </a>
                 <a href="#" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
@@ -208,7 +208,7 @@ export default function Home() {
                 <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Gemini</span>
               </div>
               <div className="flex justify-between items-center">
-                <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                <a href="https://github.com/MagicDash91/ML-Engineering-Project/tree/main/Emotion_Classification" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   View Project →
                 </a>
                 <a href="#" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
@@ -242,7 +242,7 @@ export default function Home() {
                 <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">Scikit-learn</span>
               </div>
               <div className="flex justify-between items-center">
-                <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                <a href="https://github.com/MagicDash91/ML-Engineering-Project/tree/main/Customer%20Churn%20Prediction%20and%20Analyzer" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   View Project →
                 </a>
                 <a href="#" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
@@ -276,7 +276,7 @@ export default function Home() {
                 <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">FastAPI</span>
               </div>
               <div className="flex justify-between items-center">
-                <a href="#" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                <a href="https://github.com/MagicDash91/ML-Engineering-Project/tree/main/Fraud_Detection_Analysis" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
                   View Project →
                 </a>
                 <a href="#" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
