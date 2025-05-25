@@ -41,7 +41,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-fade-in">
-            Hello, I'm Michael Wiryaseputra
+            Hello, Im Michael Wiryaseputra
           </h1>
           
           <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -552,10 +552,10 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
-            Let's Work Together
+            Lets Work Together
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-12 max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
+            Ready to bring your ideas to life? Lets discuss your next project and create something amazing together.
           </p>
           
           <div className="flex justify-center gap-6">
