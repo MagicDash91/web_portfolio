@@ -471,8 +471,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">MySQL</span>
                 </div>
@@ -483,8 +481,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">PostgreSQL</span>
                 </div>
@@ -495,8 +491,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">BigQuery</span>
                 </div>
@@ -514,8 +508,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">Python</span>
                 </div>
@@ -526,8 +518,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">TensorFlow</span>
                 </div>
@@ -538,8 +528,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">PyTorch</span>
                 </div>
@@ -557,8 +545,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">LangChain</span>
                 </div>
@@ -569,8 +555,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">LangGraph</span>
                 </div>
@@ -581,8 +565,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">LangSmith</span>
                 </div>
@@ -600,8 +582,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">FAISS</span>
                 </div>
@@ -612,8 +592,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">ChromaDB</span>
                 </div>
@@ -631,8 +609,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">GCP</span>
                 </div>
@@ -644,8 +620,6 @@ export default function Home() {
                       width={50} 
                       height={50} 
                       className="hover:scale-110 transition-transform duration-300"
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                     />
                   </div>
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">AWS</span>
@@ -657,8 +631,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">Docker</span>
                 </div>
@@ -676,8 +648,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">Flask</span>
                 </div>
@@ -688,8 +658,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">FastAPI</span>
                 </div>
@@ -700,8 +668,6 @@ export default function Home() {
                     width={60} 
                     height={60} 
                     className="hover:scale-110 transition-transform duration-300"
-                    placeholder="blur"
-                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="
                   />
                   <span className="text-sm mt-2 text-slate-600 dark:text-slate-300">Next.js</span>
                 </div>
