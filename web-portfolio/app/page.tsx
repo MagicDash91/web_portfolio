@@ -13,6 +13,9 @@ export default function Home() {
             <a href="#about" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
               About
             </a>
+            <a href="#experience" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+              Experience
+            </a>
             <a href="#projects" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
               Projects
             </a>
@@ -43,10 +46,25 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-fade-in">
             Hello, Im Michael Wiryaseputra
           </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+
+          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Machine Learning and Artificial Intelligence Engineer with a passion for building scalable and efficient systems.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
+            <span className="px-4 py-2 bg-gradient-to-r from-blue-500/10 to-blue-600/10 border border-blue-500/20 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium backdrop-blur-sm">
+              AI/ML Engineer
+            </span>
+            <span className="px-4 py-2 bg-gradient-to-r from-purple-500/10 to-purple-600/10 border border-purple-500/20 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm">
+              Bootcamp Tutor
+            </span>
+            <span className="px-4 py-2 bg-gradient-to-r from-green-500/10 to-green-600/10 border border-green-500/20 text-green-700 dark:text-green-300 rounded-full text-sm font-medium backdrop-blur-sm">
+              LLM Specialist
+            </span>
+            <span className="px-4 py-2 bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/20 text-orange-700 dark:text-orange-300 rounded-full text-sm font-medium backdrop-blur-sm">
+              Data Scientist
+            </span>
+          </div>
 
           {/* Social Links */}
           <div className="flex justify-center gap-6 mb-16">
@@ -76,6 +94,134 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Experience & Mentoring Section */}
+        <section id="experience" className="mb-32">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
+            Teaching & Mentoring Experience
+          </h2>
+          <p className="text-center text-slate-600 dark:text-slate-400 mb-16 max-w-2xl mx-auto">
+            Empowering the next generation of AI/ML engineers through hands-on training and mentorship
+          </p>
+
+          <div className="max-w-5xl mx-auto space-y-6">
+            {/* Experience Card 1 */}
+            <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-blue-500 to-purple-600 transform origin-top transition-transform duration-300"></div>
+              <div className="ml-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      AI/ML Bootcamp Tutor
+                    </h3>
+                    <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">INTELLIGO.ID</p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
+                    May 2025 - Present
+                  </span>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Teaching and mentoring students across private, semi-private, and full-class bootcamps in AI/ML topics including Machine Learning, NLP, LLMs, RAG frameworks, and LLMOps practices.
+                </p>
+              </div>
+            </div>
+
+            {/* Experience Card 2 */}
+            <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-cyan-500 to-blue-600 transform origin-top transition-transform duration-300"></div>
+              <div className="ml-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      Data Science & AI/ML Engineer Bootcamp Tutor
+                    </h3>
+                    <p className="text-lg font-semibold text-cyan-600 dark:text-cyan-400 mb-2">DIBIMBING.ID</p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
+                    Dec 2025 - Present
+                  </span>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Delivering full-class bootcamp instruction covering comprehensive Data Science and AI/ML curriculum including Machine Learning, NLP, Large Language Models, RAG frameworks, LLMOps practices, and data visualization techniques.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Machine Learning</span>
+                  <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Data Visualization</span>
+                  <span className="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">LLMs & RAG</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Experience Card 3 */}
+            <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-purple-500 to-pink-600 transform origin-top transition-transform duration-300"></div>
+              <div className="ml-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      AI/ML & Data Engineer Bootcamp Tutor
+                    </h3>
+                    <p className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-2">DSAREA</p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
+                    Sep 2025 - Present
+                  </span>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Delivering full-class instruction in Machine Learning, NLP, Large Language Models, Retrieval-Augmented Generation (RAG), and advanced RAG frameworks such as Agentic RAG, Hybrid RAG, and Adaptive RAG. Also teaching LLMOps practices and hands-on LLM fine-tuning.
+                </p>
+              </div>
+            </div>
+
+            {/* Experience Card 4 */}
+            <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-green-500 to-teal-600 transform origin-top transition-transform duration-300"></div>
+              <div className="ml-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      AI/ML Engineer & Data Engineer Bootcamp Tutor
+                    </h3>
+                    <p className="text-lg font-semibold text-green-600 dark:text-green-400 mb-2">FULLSTACK BANGALORE</p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
+                    Jul 2025 - Oct 2025
+                  </span>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Delivered comprehensive instruction covering Machine Learning, NLP, LLMs, advanced RAG architectures (Agentic, Hybrid, Adaptive), LLMOps best practices, and practical LLM fine-tuning techniques.
+                </p>
+              </div>
+            </div>
+
+            {/* Experience Card 5 */}
+            <div className="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-orange-500 to-red-600 transform origin-top transition-transform duration-300"></div>
+              <div className="ml-4">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      Agentic LLM Trainer
+                    </h3>
+                    <p className="text-lg font-semibold text-orange-600 dark:text-orange-400 mb-2">BANK JATENG</p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-full">
+                    Sep 2025
+                  </span>
+                </div>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  Delivered advanced training on constructing agentic AI systems using LangChain, LangGraph, and Gemini/OpenAI models—covering multi-agent coordination, RAG pipelines, tool execution, memory modules, and LLMOps best practices.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm">LangChain</span>
+                  <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm">LangGraph</span>
+                  <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm">RAG</span>
+                  <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-sm">KYC Automation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Portfolio Grid */}
         <section id="projects" className="mb-32">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
@@ -84,16 +230,18 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project Card 1 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/law.jpg"
-                  alt="AI-Powered Indonesian Legal Document Analysis"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/law.jpg"
+                    alt="AI-Powered Indonesian Legal Document Analysis"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               AI-Powered Indonesian Legal Document Analysis
               </h3>
@@ -118,16 +266,18 @@ export default function Home() {
             </div>
 
             {/* Project Card 2 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/medical.jpg"
-                  alt="Medical Claims Anti-Fraud Detection System"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/medical.jpg"
+                    alt="Medical Claims Anti-Fraud Detection System"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               Medical Claims Anti-Fraud Detection System
               </h3>
@@ -152,16 +302,18 @@ export default function Home() {
             </div>
 
             {/* Project Card 3 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/youtube.jpg"
-                  alt="YouTube Sentiment Analysis"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/youtube.jpg"
+                    alt="YouTube Sentiment Analysis"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               YouTube Sentiment Analysis
               </h3>
@@ -186,16 +338,18 @@ export default function Home() {
             </div>
 
             {/* Project Card 4 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/emotion.jpg"
-                  alt="Emotion Analyzer Web App"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/emotion.jpg"
+                    alt="Emotion Analyzer Web App"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               Emotion Analyzer Web App
               </h3>
@@ -220,16 +374,18 @@ export default function Home() {
             </div>
 
             {/* Project Card 5 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-teal-400 to-green-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/churn.jpg"
-                  alt="Automatic Churn Data Analysis Prediction"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-teal-400 to-green-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/churn.jpg"
+                    alt="Automatic Churn Data Analysis Prediction"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
               Automatic Churn Data Analysis Prediction
               </h3>
@@ -254,16 +410,18 @@ export default function Home() {
             </div>
 
             {/* Project Card 6 */}
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700">
-              <div className="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/fraud.jpg"
-                  alt="Automatic Fraud Prediction Web Application"
-                  width={200}
-                  height={200}
-                  className="object-cover w-full h-full"
-                />
-              </div>
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-200 dark:border-slate-700 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative">
+                <div className="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl mb-6 flex items-center justify-center overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src="/fraud.jpg"
+                    alt="Automatic Fraud Prediction Web Application"
+                    width={200}
+                    height={200}
+                    className="object-cover w-full h-full"
+                  />
+                </div></div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
                Automatic Fraud Prediction Web Application
               </h3>
@@ -570,7 +728,7 @@ export default function Home() {
             </a>
             
             <a
-              href="/resume.pdf"
+              href="/AI ML Engineer - Michael Wiryaseputra Complete (1).pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 px-8 py-4 border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-full hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-medium text-lg"
@@ -602,6 +760,9 @@ export default function Home() {
               <div className="space-y-2">
                 <a href="#about" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   About
+                </a>
+                <a href="#experience" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  Experience
                 </a>
                 <a href="#projects" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   Projects
