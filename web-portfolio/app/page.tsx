@@ -19,6 +19,9 @@ export default function Home() {
             <a href="#projects" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
               Projects
             </a>
+            <a href="#certifications" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+              Certifications
+            </a>
             <a href="#contact" className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
               Contact
             </a>
@@ -707,6 +710,46 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Certifications Section */}
+        <section id="certifications" className="mb-32">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
+            Certifications
+          </h2>
+          <div className="flex justify-center">
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 max-w-md">
+              <div className="flex flex-col items-center">
+                <div className="mb-6 bg-white dark:bg-slate-900 rounded-xl p-6 shadow-inner">
+                  <Image
+                    src="/blob.png"
+                    alt="AWS Certified Generative AI Practitioner"
+                    width={200}
+                    height={200}
+                    className="transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-2">
+                  AWS Cloud Quest
+                </h3>
+                <p className="text-lg font-semibold text-orange-600 dark:text-orange-400 text-center mb-4">
+                  Generative AI Practitioner
+                </p>
+                <div className="border-t border-slate-200 dark:border-slate-600 pt-4 mt-4">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 text-center mb-3">
+                    Hands-on experience with AWS services:
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Amazon Bedrock</span>
+                    <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Amazon Q</span>
+                    <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Lambda</span>
+                    <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">EC2</span>
+                    <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">S3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
@@ -766,6 +809,9 @@ export default function Home() {
                 </a>
                 <a href="#projects" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   Projects
+                </a>
+                <a href="#certifications" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  Certifications
                 </a>
                 <a href="#contact" className="block text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   Contact
