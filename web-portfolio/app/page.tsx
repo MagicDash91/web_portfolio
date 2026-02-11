@@ -681,8 +681,9 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-slate-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
             Certifications
           </h2>
-          <div className="flex justify-center">
-            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700 max-w-md">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            {/* AWS Certification */}
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700">
               <div className="flex flex-col items-center">
                 <div className="mb-6 bg-white dark:bg-slate-900 rounded-xl p-6 shadow-inner">
                   <Image
@@ -709,6 +710,38 @@ export default function Home() {
                     <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">Lambda</span>
                     <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">EC2</span>
                     <span className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium">S3</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BNSP Artificial Intelligence Certification */}
+            <div className="group bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-slate-200 dark:border-slate-700">
+              <div className="flex flex-col items-center">
+                <div className="mb-6 bg-white dark:bg-slate-900 rounded-xl p-6 shadow-inner">
+                  <Image
+                    src="/bnsp.png"
+                    alt="BNSP Artificial Intelligence Certification"
+                    width={200}
+                    height={200}
+                    className="transform group-hover:scale-105 transition-transform duration-500 object-contain"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white text-center mb-2">
+                  BNSP
+                </h3>
+                <p className="text-lg font-semibold text-blue-600 dark:text-blue-400 text-center mb-4">
+                  Artificial Intelligence
+                </p>
+                <div className="border-t border-slate-200 dark:border-slate-600 pt-4 mt-4">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 text-center mb-3">
+                    Certified competencies:
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Machine Learning</span>
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Deep Learning</span>
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">NLP</span>
+                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Computer Vision</span>
                   </div>
                 </div>
               </div>
