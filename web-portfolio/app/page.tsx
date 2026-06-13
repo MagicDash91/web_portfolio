@@ -7,7 +7,9 @@ import {
   useInView,
   useScroll,
   useSpring,
-  AnimatePresence,
+  useTransform,
+  useMotionValue,
+  useMotionTemplate,
 } from "framer-motion"
 
 // ── Scroll Progress Bar ───────────────────────────────────────────────────────
@@ -151,6 +153,210 @@ const experiences = [
   },
 ]
 
+// ── Tilt Card (3D tilt + spotlight + glow + sheen) ────────────────────────────
+
+const cardStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+}
+
+const cardItem = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" as const } },
+}
+
+const iconPop = {
+  hidden: { opacity: 0, scale: 0, y: 10 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 260, damping: 18 },
+  },
+}
+
+function TiltCard({
+  glow,
+  tilt = 5,
+  className = "",
+  children,
+}: {
+  glow: string
+  tilt?: number
+  className?: string
+  children: React.ReactNode
+}) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const mx = useMotionValue(50)
+  const my = useMotionValue(50)
+  const rotateX = useSpring(useTransform(my, [0, 100], [tilt, -tilt]), { stiffness: 250, damping: 24 })
+  const rotateY = useSpring(useTransform(mx, [0, 100], [-tilt, tilt]), { stiffness: 250, damping: 24 })
+  const spotlight = useMotionTemplate`radial-gradient(320px circle at ${mx}% ${my}%, rgba(255,255,255,0.08), transparent 70%)`
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mx.set(((e.clientX - rect.left) / rect.width) * 100)
+    my.set(((e.clientY - rect.top) / rect.height) * 100)
+  }
+
+  const handleMouseLeave = () => {
+    mx.set(50)
+    my.set(50)
+  }
+
+  return (
+    <div style={{ perspective: 900 }} className="h-full">
+      <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="group relative h-full rounded-2xl"
+      >
+        {/* Glow border on hover */}
+        <div
+          className={`pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br ${glow} opacity-0 group-hover:opacity-50 blur-[8px] transition-opacity duration-500`}
+        />
+
+        <div className={`relative h-full rounded-2xl overflow-hidden ${className}`}>
+          {/* Cursor spotlight */}
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{ background: spotlight }}
+          />
+
+          {/* Sheen sweep on hover */}
+          <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden rounded-2xl">
+            <div className="absolute inset-y-0 left-[-60%] w-1/2 skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/[0.07] to-transparent group-hover:translate-x-[400%] transition-transform duration-1000 ease-out" />
+          </div>
+
+          {children}
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+// ── Experience Timeline ───────────────────────────────────────────────────────
+
+function ExperienceCard({ exp }: { exp: (typeof experiences)[number] }) {
+  return (
+    <TiltCard
+      glow={exp.color}
+      className="bg-[#050b13]/90 backdrop-blur-sm border border-white/10 group-hover:border-white/25 transition-colors duration-300"
+    >
+      <motion.div
+        variants={cardStagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-60px" }}
+        className="p-6"
+      >
+          <motion.div variants={cardItem} className={`h-1 w-12 rounded-full bg-gradient-to-r ${exp.color} mb-4`} />
+          <motion.div variants={cardItem} className="flex flex-wrap items-start justify-between gap-2 mb-2">
+            <h3 className="text-sm font-bold text-white flex-1 leading-snug">
+              {exp.title}
+            </h3>
+            <span className="text-xs font-medium text-slate-400 bg-white/10 border border-white/10 px-3 py-1 rounded-full shrink-0">
+              {exp.date}
+            </span>
+          </motion.div>
+          <motion.p
+            variants={cardItem}
+            className={`text-sm font-bold bg-gradient-to-r ${exp.color} bg-clip-text text-transparent mb-3`}
+          >
+            {exp.company}
+          </motion.p>
+          <motion.p variants={cardItem} className="text-sm text-slate-400 leading-relaxed mb-4">
+            {exp.desc}
+          </motion.p>
+          <motion.div variants={cardStagger} className="flex flex-wrap gap-2">
+            {exp.tags.map((tag) => (
+              <motion.span
+                key={tag}
+                variants={cardItem}
+                whileHover={{ scale: 1.08, y: -2 }}
+                className="text-xs px-2.5 py-1 bg-white/10 hover:bg-white/20 text-slate-300 rounded-full cursor-default transition-colors"
+              >
+                {tag}
+              </motion.span>
+            ))}
+          </motion.div>
+      </motion.div>
+    </TiltCard>
+  )
+}
+
+function ExperienceTimeline() {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 80%", "end 65%"] })
+  const lineScale = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+  const glowTop = useTransform(lineScale, (v) => `${v * 100}%`)
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Base track */}
+      <div className="absolute left-6 top-0 bottom-0 w-px bg-white/10 md:left-1/2 md:-translate-x-px" />
+
+      {/* Progress line drawn on scroll */}
+      <motion.div
+        style={{ scaleY: lineScale }}
+        className="absolute left-6 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 md:left-1/2 md:-translate-x-px"
+      />
+
+      {/* Traveling glow tip */}
+      <motion.div
+        style={{ top: glowTop }}
+        className="absolute left-6 md:left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_16px_5px_rgba(139,92,246,0.5)] z-10"
+      />
+
+      {experiences.map((exp, i) => {
+        const isEven = i % 2 === 0
+        return (
+          <motion.div
+            key={exp.title}
+            initial={{ opacity: 0, x: isEven ? -60 : 60, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className={`relative flex mb-10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
+          >
+            {/* Timeline node */}
+            <div className="absolute left-6 md:left-1/2 z-10 -translate-x-1/2 mt-7">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 300, damping: 14, delay: 0.2 }}
+                className="relative"
+              >
+                <div
+                  className={`w-4 h-4 rounded-full bg-gradient-to-br ${exp.color} border-2 border-[#02080f] shadow-[0_0_14px_rgba(139,92,246,0.55)]`}
+                />
+                <motion.div
+                  animate={{ scale: [1, 1.9], opacity: [0.45, 0] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+                  className={`absolute inset-0 rounded-full bg-gradient-to-br ${exp.color}`}
+                />
+              </motion.div>
+            </div>
+
+            {/* Card */}
+            <div
+              className={`pl-16 md:pl-0 w-full md:w-[46%] ${
+                isEven ? "md:pr-10" : "md:pl-10 md:ml-[54%]"
+              }`}
+            >
+              <ExperienceCard exp={exp} />
+            </div>
+          </motion.div>
+        )
+      })}
+    </div>
+  )
+}
+
 const projects = [
   {
     title: "AI-Powered Indonesian Legal Document Analysis",
@@ -240,8 +446,8 @@ const speakingEvents = [
 ]
 
 type TechItem =
-  | { name: string; src: string; initials?: never; bg?: never }
-  | { name: string; src?: never; initials: string; bg: string }
+  | { name: string; src: string; whiteBg?: boolean; initials?: never; bg?: never }
+  | { name: string; src?: never; initials: string; bg: string; whiteBg?: never }
 
 const techCategories: { title: string; items: TechItem[] }[] = [
   {
@@ -264,17 +470,17 @@ const techCategories: { title: string; items: TechItem[] }[] = [
   {
     title: "LLM & RAG",
     items: [
-      { name: "LangChain", src: "/langchain.png" },
-      { name: "LangGraph", src: "/langgraph.png" },
-      { name: "LangSmith", src: "/langsmith.png" },
+      { name: "LangChain", src: "/langchain.png", whiteBg: true },
+      { name: "LangGraph", src: "/langgraph.png", whiteBg: true },
+      { name: "LangSmith", src: "/langsmith.png", whiteBg: true },
       { name: "CrewAI", src: "/crewai.jpg" },
     ],
   },
   {
     title: "Vector DBs",
     items: [
-      { name: "FAISS", src: "/faiss.jpg" },
-      { name: "ChromaDB", src: "/chroma.png" },
+      { name: "FAISS", src: "/faiss.jpg", whiteBg: true },
+      { name: "ChromaDB", src: "/chroma.png", whiteBg: true },
     ],
   },
   {
@@ -296,24 +502,48 @@ const techCategories: { title: string; items: TechItem[] }[] = [
   },
 ]
 
+const stackGlows = [
+  "from-blue-500 to-cyan-500",
+  "from-purple-500 to-pink-500",
+  "from-cyan-500 to-teal-500",
+  "from-orange-500 to-amber-500",
+  "from-indigo-500 to-blue-500",
+  "from-green-500 to-emerald-500",
+]
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All")
+  const [navSolid, setNavSolid] = useState(false)
   const filtered =
     activeFilter === "All" ? projects : projects.filter((p) => p.category === activeFilter)
 
+  useEffect(() => {
+    const onScroll = () => setNavSolid(window.scrollY > 60)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
+    <div className="min-h-screen bg-[#02080f] text-white overflow-x-hidden">
       <ScrollProgress />
 
       {/* ─── Navigation ─────────────────────────────────────────────────── */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-slate-100 shadow-sm">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          navSolid
+            ? "backdrop-blur-xl bg-[#02080f]/90 border-b border-white/10 shadow-lg shadow-black/20"
+            : ""
+        }`}
+      >
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-500/30 hover:ring-blue-500 transition-all duration-300"
+            className={`w-10 h-10 rounded-full overflow-hidden ring-2 transition-all duration-300 ${
+              navSolid ? "ring-blue-500/30 hover:ring-blue-500" : "ring-white/25 hover:ring-white/60"
+            }`}
           >
             <Image src="/ax.jpg" alt="Michael Wiryaseputra" width={40} height={40} className="object-cover w-full h-full" />
           </motion.div>
@@ -326,295 +556,307 @@ export default function Home() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="relative text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors group py-1"
+                className="relative text-sm font-medium transition-colors group py-1 text-white/75 hover:text-white"
               >
                 {item}
-                <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300 rounded-full" />
+                <span
+                  className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300 rounded-full bg-white"
+                />
               </a>
             ))}
           </motion.div>
         </nav>
       </header>
 
-      <main>
+      <main className="dot-grid">
         {/* ─── Hero ───────────────────────────────────────────────────────── */}
-        <section id="about" className="relative min-h-screen flex items-center overflow-hidden bg-white">
-          {/* Animated blobs */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-16 -left-20 w-80 h-80 bg-blue-100/70 rounded-full blur-3xl animate-blob" />
-            <div className="absolute top-24 right-0 w-96 h-96 bg-purple-100/60 rounded-full blur-3xl animate-blob animation-delay-2000" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-56 bg-cyan-100/50 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        <section
+          id="about"
+          className="relative min-h-[115vh] flex flex-col overflow-hidden"
+          style={{ backgroundColor: "#02080f" }}
+        >
+
+          {/* Photo — mobile: full-bleed background */}
+          <div className="md:hidden absolute inset-0">
+            <Image
+              src="/header2.png"
+              alt="Michael Wiryaseputra"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0" style={{ background: "rgba(2,8,15,0.72)" }} />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#02080f]/60 via-transparent to-[#02080f]" />
           </div>
 
-          <div className="relative w-full max-w-7xl mx-auto px-6 py-32 text-center">
-            {/* Avatar */}
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 180, damping: 18, delay: 0.1 }}
-              className="relative inline-block mb-8"
+          {/* Photo — desktop: floating portrait with overlay edge cover */}
+          <div className="hidden md:block absolute inset-0 pointer-events-none">
+            {/* Image container */}
+            <div
+              className="absolute overflow-hidden"
+              style={{
+                right: "-1%",
+                top: "46%",
+                transform: "translateY(-50%)",
+                width: "780px",
+                height: "1050px",
+              }}
             >
-              <div className="w-36 h-36 rounded-full p-[3px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto">
-                <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                  <Image
-                    src="/ax.jpg"
-                    alt="Michael Wiryaseputra"
-                    width={144}
-                    height={144}
-                    className="object-cover w-full h-full"
-                    priority
-                  />
-                </div>
-              </div>
-              <motion.div
-                className="absolute -inset-3 rounded-full border border-blue-200"
-                animate={{ scale: [1, 1.08, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              <Image
+                src="/header2.png"
+                alt="Michael Wiryaseputra"
+                fill
+                className="object-cover"
+                style={{
+                  objectPosition: "center 18%",
+                  filter: "brightness(0.82) contrast(1.08) saturate(0.85)",
+                }}
+                priority
               />
-              <motion.div
-                className="absolute -inset-6 rounded-full border border-purple-100"
-                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              />
-            </motion.div>
+            </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-sm font-semibold text-blue-600 tracking-widest uppercase mb-3"
-            >
-              Hello, I&apos;m
-            </motion.p>
+            {/* Left edge — solid until past the container boundary, then fades */}
+            <div
+              className="absolute inset-y-0 left-0 right-0"
+              style={{
+                background:
+                  "linear-gradient(to right, #02080f 0%, #02080f 64%, rgba(2,8,15,0.6) 70%, rgba(2,8,15,0.12) 76%, transparent 82%)",
+              }}
+            />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-7xl font-black text-slate-900 mb-5 leading-tight"
-            >
-              Michael Wiryaseputra
-            </motion.h1>
+            {/* Top edge */}
+            <div
+              className="absolute top-0 left-0 right-0"
+              style={{
+                height: "220px",
+                background:
+                  "linear-gradient(to bottom, #02080f 0%, rgba(2,8,15,0.85) 40%, rgba(2,8,15,0.2) 75%, transparent 100%)",
+              }}
+            />
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-2xl md:text-3xl font-bold mb-6 min-h-[2.5rem]"
-            >
-              <Typewriter />
-            </motion.div>
+            {/* Bottom edge */}
+            <div
+              className="absolute bottom-0 left-0 right-0"
+              style={{
+                height: "280px",
+                background:
+                  "linear-gradient(to top, #02080f 0%, rgba(2,8,15,0.92) 35%, rgba(2,8,15,0.35) 65%, transparent 100%)",
+              }}
+            />
 
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10"
-            >
-              Machine Learning and AI Engineer passionate about building scalable intelligent systems
-              and teaching the next generation of ML engineers.
-            </motion.p>
-
-            {/* Skill badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex flex-wrap justify-center gap-3 mb-10"
-            >
-              {[
-                { label: "AI/ML Engineer", bg: "bg-blue-50 text-blue-700 border-blue-200" },
-                { label: "Bootcamp Tutor", bg: "bg-purple-50 text-purple-700 border-purple-200" },
-                { label: "LLM Specialist", bg: "bg-green-50 text-green-700 border-green-200" },
-                { label: "Data Scientist", bg: "bg-orange-50 text-orange-700 border-orange-200" },
-              ].map(({ label, bg }) => (
-                <motion.span
-                  key={label}
-                  whileHover={{ y: -3, scale: 1.05 }}
-                  className={`px-5 py-2 rounded-full text-sm font-semibold border ${bg} cursor-default shadow-sm`}
-                >
-                  {label}
-                </motion.span>
-              ))}
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="flex flex-wrap justify-center gap-4"
-            >
-              <motion.a
-                href="https://github.com/MagicDash91/ML-Engineering-Project"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 28px rgba(0,0,0,0.18)" }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2.5 px-7 py-3.5 bg-slate-900 text-white rounded-full font-semibold shadow-lg"
-              >
-                <GitHubIcon /> GitHub
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/in/michael-wiryaseputra/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 28px rgba(37,99,235,0.35)" }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2.5 px-7 py-3.5 bg-blue-600 text-white rounded-full font-semibold shadow-lg"
-              >
-                <LinkedInIcon /> LinkedIn
-              </motion.a>
-            </motion.div>
-
-            {/* Scroll indicator */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.3 }}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex flex-col items-center gap-1 text-slate-400 text-xs font-medium"
-              >
-                <span className="tracking-widest uppercase">Scroll</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </motion.div>
-            </motion.div>
+            {/* Right edge */}
+            <div
+              className="absolute inset-y-0 right-0"
+              style={{
+                width: "120px",
+                background:
+                  "linear-gradient(to left, #02080f 0%, rgba(2,8,15,0.6) 50%, transparent 100%)",
+              }}
+            />
           </div>
-        </section>
 
-        {/* ─── Stats ──────────────────────────────────────────────────────── */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-700">
-          <div className="max-w-4xl mx-auto px-6">
-            <div className="grid grid-cols-3 gap-8 text-center text-white">
-              {[
-                { to: 5, suffix: "+", label: "Teaching Roles" },
-                { to: 6, suffix: "+", label: "Projects Built" },
-                { to: 2, suffix: "", label: "Certifications" },
-              ].map((s) => (
+          {/* Crosshair markers */}
+          <span className="absolute top-24 left-10 text-white/15 text-lg select-none">+</span>
+          <span className="absolute top-24 right-16 text-white/15 text-lg select-none">+</span>
+          <span className="absolute bottom-14 left-10 text-white/15 text-lg select-none">+</span>
+
+          {/* Vertical label — right edge */}
+          <div
+            className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 text-white/20 text-[10px] font-medium uppercase select-none"
+            style={{ writingMode: "vertical-rl", letterSpacing: "0.35em" }}
+          >
+            
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 flex-1 flex items-center pt-20">
+            <div className="max-w-7xl mx-auto w-full px-8 md:px-14">
+              <div className="max-w-xl">
+                {/* Social link row */}
                 <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center gap-5 mb-10"
                 >
-                  <div className="text-5xl md:text-6xl font-black mb-2 tabular-nums">
-                    <Counter to={s.to} suffix={s.suffix} />
-                  </div>
-                  <div className="text-blue-200 font-medium text-sm tracking-widest uppercase">
-                    {s.label}
-                  </div>
+                  {[
+                    { label: "GH", href: "https://github.com/MagicDash91/ML-Engineering-Project" },
+                    { label: "LI", href: "https://www.linkedin.com/in/michael-wiryaseputra/" },
+                    { label: "EMAIL", href: "mailto:michwirja@gmail.com" },
+                  ].map(({ label, href }, i) => (
+                    <span key={label} className="flex items-center gap-5">
+                      {i > 0 && <span className="w-px h-3 bg-white/20" />}
+                      <a
+                        href={href}
+                        target={label !== "EMAIL" ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-bold text-white/45 hover:text-white tracking-widest uppercase transition-colors duration-200"
+                      >
+                        {label}
+                      </a>
+                    </span>
+                  ))}
                 </motion.div>
-              ))}
+
+                {/* Editorial serif headline */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 45 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-6xl md:text-7xl xl:text-8xl font-bold italic text-white leading-[1.06] mb-5"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  Michael<br />Wiryaseputra
+                </motion.h1>
+
+                {/* Typewriter role */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.55 }}
+                  className="text-lg md:text-xl text-white/65 mb-7 min-h-[1.75rem]"
+                >
+                  <Typewriter />
+                </motion.div>
+
+                {/* Description */}
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.65 }}
+                  className="text-sm md:text-base text-white/45 leading-relaxed mb-10 max-w-md"
+                >
+                  Machine Learning and AI Engineer passionate about building scalable intelligent
+                  systems and teaching the next generation of ML engineers.
+                </motion.p>
+
+                {/* CTA buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75 }}
+                  className="flex flex-wrap gap-4"
+                >
+                  <motion.a
+                    href="https://github.com/MagicDash91/ML-Engineering-Project"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex items-center gap-2.5 px-7 py-3.5 bg-orange-500 hover:bg-orange-400 text-white rounded-full font-semibold text-sm transition-colors shadow-lg shadow-orange-500/25"
+                  >
+                    <GitHubIcon /> GitHub
+                  </motion.a>
+                  <motion.a
+                    href="https://www.linkedin.com/in/michael-wiryaseputra/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex items-center gap-2.5 px-7 py-3.5 border border-white/20 hover:border-white/50 text-white/85 hover:text-white rounded-full font-semibold text-sm transition-all backdrop-blur-sm"
+                  >
+                    <LinkedInIcon /> LinkedIn
+                  </motion.a>
+                </motion.div>
+
+                {/* Stats row */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                  className="flex gap-10 pt-10 mt-10 border-t border-white/10"
+                >
+                  {[
+                    { value: "5+", label: "Teaching Roles" },
+                    { value: "6+", label: "Projects Built" },
+                    { value: "2", label: "Certifications" },
+                  ].map(({ value, label }) => (
+                    <div key={label}>
+                      <div className="text-2xl font-black text-white">{value}</div>
+                      <div className="text-[11px] text-slate-500 uppercase tracking-widest mt-1">{label}</div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
+
+          {/* Bottom gradient → seamless into dark page */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+            style={{
+              background: "linear-gradient(to bottom, transparent 0%, #02080f 100%)",
+            }}
+          />
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex flex-col items-center gap-1 text-white/35 text-xs font-medium"
+            >
+              <span className="tracking-widest uppercase">Scroll</span>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.div>
+          </motion.div>
         </section>
 
+
         {/* ─── Experience ─────────────────────────────────────────────────── */}
-        <section id="experience" className="py-32">
-          <div className="max-w-5xl mx-auto px-6">
+        <div className="section-divider mx-8" />
+        <section id="experience" className="py-32 relative overflow-hidden">
+          {/* Ambient glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-5xl mx-auto px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               className="text-center mb-20"
             >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                Experience
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
                 Teaching & Mentoring
               </h2>
-              <p className="text-slate-500 max-w-xl mx-auto">
+              <p className="text-slate-400 max-w-xl mx-auto">
                 Empowering the next generation of AI/ML engineers through hands-on training and mentorship
               </p>
             </motion.div>
 
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 md:left-1/2 md:-translate-x-px" />
-
-              {experiences.map((exp, i) => {
-                const isEven = i % 2 === 0
-                return (
-                  <motion.div
-                    key={exp.title}
-                    initial={{ opacity: 0, x: isEven ? -40 : 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.55 }}
-                    className={`relative flex mb-10 ${isEven ? "md:flex-row" : "md:flex-row-reverse"}`}
-                  >
-                    {/* Timeline dot */}
-                    <div className="absolute left-6 md:left-1/2 z-10 -translate-x-1/2 mt-7">
-                      <motion.div
-                        whileInView={{ scale: [0, 1.3, 1] }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4 }}
-                        className={`w-4 h-4 rounded-full bg-gradient-to-br ${exp.color} border-2 border-white shadow-md`}
-                      />
-                    </div>
-
-                    {/* Card */}
-                    <div
-                      className={`pl-16 md:pl-0 w-full md:w-[46%] ${
-                        isEven ? "md:pr-10" : "md:pl-10 md:ml-[54%]"
-                      }`}
-                    >
-                      <motion.div
-                        whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
-                        className="bg-white border border-slate-100 rounded-2xl p-6 shadow-md transition-all duration-300"
-                      >
-                        <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${exp.color} mb-4`} />
-                        <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                          <h3 className="text-sm font-bold text-slate-900 flex-1 leading-snug">
-                            {exp.title}
-                          </h3>
-                          <span className="text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-full shrink-0">
-                            {exp.date}
-                          </span>
-                        </div>
-                        <p
-                          className={`text-sm font-bold bg-gradient-to-r ${exp.color} bg-clip-text text-transparent mb-3`}
-                        >
-                          {exp.company}
-                        </p>
-                        <p className="text-sm text-slate-500 leading-relaxed mb-4">{exp.desc}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {exp.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
+            <ExperienceTimeline />
           </div>
         </section>
 
         {/* ─── Speaking Events ────────────────────────────────────────────── */}
-        <section id="speaking" className="py-32 bg-slate-50">
-          <div className="max-w-5xl mx-auto px-6">
+        <div className="section-divider mx-8" />
+        <section id="speaking" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-[500px] h-[200px] bg-purple-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-5xl mx-auto px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-purple-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                Speaking
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
                 Public Speaking
               </h2>
-              <p className="text-slate-500 max-w-xl mx-auto">
+              <p className="text-slate-400 max-w-xl mx-auto">
                 Events where I&apos;ve been invited as a guest speaker to share expertise in AI and ML
               </p>
             </motion.div>
@@ -623,45 +865,72 @@ export default function Home() {
               {speakingEvents.map((ev, i) => (
                 <motion.div
                   key={ev.event}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: i * 0.15 }}
-                  whileHover={{ y: -6 }}
-                  className="group bg-white rounded-2xl border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col"
+                  transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {/* Poster */}
-                  <div className="relative w-full overflow-hidden bg-slate-100" style={{ aspectRatio: "3/4" }}>
-                    <Image
-                      src={ev.poster}
-                      alt={ev.event}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold bg-gradient-to-r ${ev.color} shadow-md`}>
-                      Speaker
+                  <TiltCard
+                    glow={ev.color}
+                    tilt={4}
+                    className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300 flex flex-col"
+                  >
+                    {/* Poster */}
+                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                      <Image
+                        src={ev.poster}
+                        alt={ev.event}
+                        fill
+                        className="object-cover group-hover:scale-[1.06] transition-transform duration-700 ease-out"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#050b13] via-transparent to-transparent opacity-60 group-hover:opacity-25 transition-opacity duration-500" />
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.6, y: -8 }}
+                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ type: "spring", stiffness: 280, damping: 16, delay: 0.35 + i * 0.12 }}
+                        className={`absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-bold bg-gradient-to-r ${ev.color} shadow-md`}
+                      >
+                        Speaker
+                      </motion.div>
                     </div>
-                  </div>
 
-                  {/* Details */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${ev.color} mb-4`} />
-                    <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug">{ev.event}</h3>
-                    <p className={`text-sm font-bold bg-gradient-to-r ${ev.color} bg-clip-text text-transparent mb-1`}>
-                      {ev.organizer}
-                    </p>
-                    <p className="text-xs text-slate-500 mb-1">{ev.venue}</p>
-                    {ev.date && (
-                      <p className="text-xs text-slate-400 mb-4">{ev.date}</p>
-                    )}
-                    <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                      {ev.topics.map((t) => (
-                        <span key={t} className="text-xs px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                    {/* Details */}
+                    <motion.div
+                      variants={cardStagger}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, margin: "-60px" }}
+                      className="p-6 flex flex-col flex-1"
+                    >
+                      <motion.div variants={cardItem} className={`h-1 w-12 rounded-full bg-gradient-to-r ${ev.color} mb-4`} />
+                      <motion.h3 variants={cardItem} className="text-base font-bold text-white mb-1 leading-snug">
+                        {ev.event}
+                      </motion.h3>
+                      <motion.p
+                        variants={cardItem}
+                        className={`text-sm font-bold bg-gradient-to-r ${ev.color} bg-clip-text text-transparent mb-1`}
+                      >
+                        {ev.organizer}
+                      </motion.p>
+                      <motion.p variants={cardItem} className="text-xs text-slate-400 mb-1">{ev.venue}</motion.p>
+                      {ev.date && (
+                        <motion.p variants={cardItem} className="text-xs text-slate-500 mb-4">{ev.date}</motion.p>
+                      )}
+                      <motion.div variants={cardStagger} className="flex flex-wrap gap-2 mt-auto pt-4">
+                        {ev.topics.map((t) => (
+                          <motion.span
+                            key={t}
+                            variants={cardItem}
+                            whileHover={{ scale: 1.08, y: -2 }}
+                            className="text-xs px-2.5 py-1 bg-white/10 hover:bg-white/20 text-slate-300 rounded-full cursor-default transition-colors"
+                          >
+                            {t}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </motion.div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </div>
@@ -669,156 +938,161 @@ export default function Home() {
         </section>
 
         {/* ─── Projects ───────────────────────────────────────────────────── */}
-        <section id="projects" className="py-32 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
-                Featured Projects
-              </h2>
-              <p className="text-slate-500 mb-8">A selection of work in NLP, ML, and Agentic RAG</p>
+        <div className="section-divider mx-8" />
+        <section id="projects" className="relative overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-[600px] h-[200px] bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none" />
 
-              {/* Filter tabs */}
-              <div className="flex flex-wrap justify-center gap-2">
-                {FILTERS.map((f) => (
-                  <motion.button
-                    key={f}
-                    onClick={() => setActiveFilter(f)}
-                    whileTap={{ scale: 0.95 }}
-                    className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
-                      activeFilter === f
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md"
-                        : "bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-blue-600"
-                    }`}
-                  >
-                    {f}
-                  </motion.button>
-                ))}
+          <div className="py-24 px-6 max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                Projects
               </div>
-            </motion.div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeFilter}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {filtered.map((project, i) => (
-                  <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.07 }}
-                    whileHover={{ y: -6 }}
-                    className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              <h2 className="text-4xl font-black text-white mb-3">Featured Projects</h2>
+              <p className="text-slate-400 text-sm">NLP · ML · Agentic RAG</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {projects.map((project, i) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <TiltCard
+                    glow={project.gradient}
+                    tilt={4}
+                    className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
                   >
-                    {/* Image */}
-                    <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden shrink-0`}>
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-white text-sm font-semibold hover:underline"
-                          onClick={(e) => e.stopPropagation()}
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                      <div className="relative h-44 overflow-hidden">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#050b13] via-black/30 to-transparent" />
+                        <span className="absolute top-3 left-3 text-[10px] font-bold px-2 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white">
+                          {project.category}
+                        </span>
+                        {/* Open-repo arrow on hover */}
+                        <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M7 7h10v10" />
+                          </svg>
+                        </div>
+                      </div>
+                      <motion.div
+                        variants={cardStagger}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-40px" }}
+                        className="p-5"
+                      >
+                        <motion.h3
+                          variants={cardItem}
+                          className="text-base font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300"
                         >
-                          View on GitHub →
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 flex flex-col flex-1">
-                      <h3 className="text-base font-bold text-slate-900 mb-2 leading-snug">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-4 flex-1">
-                        {project.desc}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-xs px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full font-medium"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+                          {project.title}
+                        </motion.h3>
+                        <motion.p variants={cardItem} className="text-sm text-slate-400 mb-3 leading-relaxed">
+                          {project.desc}
+                        </motion.p>
+                        <motion.div variants={cardStagger} className="flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                            <motion.span
+                              key={tag}
+                              variants={cardItem}
+                              className="text-xs px-2.5 py-1 bg-white/10 text-slate-300 rounded-full"
+                            >
+                              {tag}
+                            </motion.span>
+                          ))}
+                        </motion.div>
+                      </motion.div>
+                    </a>
+                  </TiltCard>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ─── Tech Stack ─────────────────────────────────────────────────── */}
-        <section className="py-32 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
+        <div className="section-divider mx-8" />
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute bottom-0 right-1/3 w-[500px] h-[200px] bg-blue-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Tech Stack</h2>
-              <p className="text-slate-500">Tools and technologies I work with daily</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                Stack
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Tech Stack</h2>
+              <p className="text-slate-400">Tools and technologies I work with daily</p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {techCategories.map((cat, ci) => (
                 <motion.div
                   key={cat.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: ci * 0.08 }}
-                  whileHover={{ y: -4 }}
-                  className="bg-white border border-slate-100 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300"
+                  transition={{ delay: ci * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <h3 className="text-sm font-bold text-slate-900 mb-6 uppercase tracking-wide">
-                    {cat.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-6 items-center">
-                    {cat.items.map((item) => (
+                  <TiltCard
+                    glow={stackGlows[ci % stackGlows.length]}
+                    tilt={4}
+                    className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
+                  >
+                    <div className="p-6">
+                      <h3 className="text-sm font-bold text-white mb-6 uppercase tracking-wide">
+                        {cat.title}
+                      </h3>
                       <motion.div
-                        key={item.name}
-                        whileHover={{ scale: 1.18, y: -2 }}
-                        className="flex flex-col items-center gap-2 cursor-default"
+                        variants={cardStagger}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-40px" }}
+                        className="flex flex-wrap gap-6 items-center"
                       >
-                        <div className="w-12 h-12 flex items-center justify-center">
-                          {item.src ? (
-                            <Image
-                              src={item.src}
-                              alt={item.name}
-                              width={48}
-                              height={48}
-                              className="object-contain"
-                            />
-                          ) : (
-                            <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.bg} flex items-center justify-center`}>
-                              <span className="text-white text-xs font-black tracking-tight">{item.initials}</span>
+                        {cat.items.map((item) => (
+                          <motion.div
+                            key={item.name}
+                            variants={iconPop}
+                            whileHover={{ scale: 1.18, y: -3, filter: "drop-shadow(0 0 10px rgba(59,130,246,0.55))" }}
+                            className="flex flex-col items-center gap-2 cursor-default"
+                          >
+                            <div className="w-12 h-12 flex items-center justify-center">
+                              {item.src ? (
+                                <Image
+                                  src={item.src}
+                                  alt={item.name}
+                                  width={48}
+                                  height={48}
+                                  className="object-contain"
+                                  style={item.whiteBg ? { filter: "invert(1) hue-rotate(180deg)" } : undefined}
+                                />
+                              ) : (
+                                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.bg} flex items-center justify-center`}>
+                                  <span className="text-white text-xs font-black tracking-tight">{item.initials}</span>
+                                </div>
+                              )}
                             </div>
-                          )}
-                        </div>
-                        <span className="text-xs text-slate-500 font-medium">{item.name}</span>
+                            <span className="text-xs text-slate-400 font-medium">{item.name}</span>
+                          </motion.div>
+                        ))}
                       </motion.div>
-                    ))}
-                  </div>
+                    </div>
+                  </TiltCard>
                 </motion.div>
               ))}
             </div>
@@ -826,97 +1100,156 @@ export default function Home() {
         </section>
 
         {/* ─── Certifications ─────────────────────────────────────────────── */}
-        <section id="certifications" className="py-32 bg-slate-50">
-          <div className="max-w-4xl mx-auto px-6">
+        <div className="section-divider mx-8" />
+        <section id="certifications" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-orange-600/4 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-4xl mx-auto px-6 relative">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/5 text-orange-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+                Credentials
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
                 Certifications
               </h2>
-              <p className="text-slate-500">Professional credentials in AI and Cloud</p>
+              <p className="text-slate-400">Professional credentials in AI and Cloud</p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -6 }}
-                className="group bg-white rounded-2xl p-8 border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                <div className="flex flex-col items-center">
-                  <div className="mb-6 p-4 bg-slate-50 rounded-2xl group-hover:shadow-inner transition-all">
-                    <Image
-                      src="/blob.png"
-                      alt="AWS Cloud Quest"
-                      width={180}
-                      height={180}
-                      className="object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">AWS Cloud Quest</h3>
-                  <p className="text-orange-600 font-semibold text-sm mb-5">
-                    Generative AI Practitioner
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {["Amazon Bedrock", "Amazon Q", "Lambda", "EC2", "S3"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-3 py-1 bg-orange-50 text-orange-700 border border-orange-100 rounded-full font-medium"
+                <TiltCard
+                  glow="from-orange-400 to-yellow-400"
+                  tilt={4}
+                  className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-yellow-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10" />
+                  <motion.div
+                    variants={cardStagger}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-60px" }}
+                    className="p-8 flex flex-col items-center"
+                  >
+                    <motion.div variants={cardItem} className="relative mb-6 p-4 bg-white/5 rounded-2xl">
+                      <div className="absolute inset-0 rounded-2xl bg-orange-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <motion.div
+                        animate={{ y: [0, -7, 0] }}
+                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="relative"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                        <Image
+                          src="/blob.png"
+                          alt="AWS Cloud Quest"
+                          width={180}
+                          height={180}
+                          className="object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </motion.div>
+                    </motion.div>
+                    <motion.h3 variants={cardItem} className="text-xl font-bold text-white mb-1">
+                      AWS Cloud Quest
+                    </motion.h3>
+                    <motion.p
+                      variants={cardItem}
+                      className="font-semibold text-sm mb-5 bg-gradient-to-r from-orange-400 to-yellow-400 bg-clip-text text-transparent"
+                    >
+                      Generative AI Practitioner
+                    </motion.p>
+                    <motion.div variants={cardStagger} className="flex flex-wrap justify-center gap-2">
+                      {["Amazon Bedrock", "Amazon Q", "Lambda", "EC2", "S3"].map((tag) => (
+                        <motion.span
+                          key={tag}
+                          variants={cardItem}
+                          whileHover={{ scale: 1.08, y: -2 }}
+                          className="text-xs px-3 py-1 bg-white/10 hover:bg-white/20 text-slate-300 border border-white/10 rounded-full font-medium cursor-default transition-colors"
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                    </motion.div>
+                  </motion.div>
+                </TiltCard>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -6 }}
-                className="group bg-white rounded-2xl p-8 border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                <div className="flex flex-col items-center">
-                  <div className="mb-6 p-4 bg-slate-50 rounded-2xl group-hover:shadow-inner transition-all">
-                    <Image
-                      src="/bnsp.png"
-                      alt="BNSP AI"
-                      width={180}
-                      height={180}
-                      className="object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">BNSP</h3>
-                  <p className="text-blue-600 font-semibold text-sm mb-5">Artificial Intelligence</p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {["Machine Learning", "Deep Learning", "NLP", "Computer Vision"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-3 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-full font-medium"
+                <TiltCard
+                  glow="from-blue-500 to-purple-500"
+                  tilt={4}
+                  className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10" />
+                  <motion.div
+                    variants={cardStagger}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: "-60px" }}
+                    className="p-8 flex flex-col items-center"
+                  >
+                    <motion.div variants={cardItem} className="relative mb-6 p-4 bg-white/5 rounded-2xl">
+                      <div className="absolute inset-0 rounded-2xl bg-blue-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <motion.div
+                        animate={{ y: [0, -7, 0] }}
+                        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                        className="relative"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                        <Image
+                          src="/bnsp.png"
+                          alt="BNSP AI"
+                          width={180}
+                          height={180}
+                          className="object-contain group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </motion.div>
+                    </motion.div>
+                    <motion.h3 variants={cardItem} className="text-xl font-bold text-white mb-1">
+                      BNSP
+                    </motion.h3>
+                    <motion.p
+                      variants={cardItem}
+                      className="font-semibold text-sm mb-5 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                    >
+                      Artificial Intelligence
+                    </motion.p>
+                    <motion.div variants={cardStagger} className="flex flex-wrap justify-center gap-2">
+                      {["Machine Learning", "Deep Learning", "NLP", "Computer Vision"].map((tag) => (
+                        <motion.span
+                          key={tag}
+                          variants={cardItem}
+                          whileHover={{ scale: 1.08, y: -2 }}
+                          className="text-xs px-3 py-1 bg-white/10 hover:bg-white/20 text-slate-300 border border-white/10 rounded-full font-medium cursor-default transition-colors"
+                        >
+                          {tag}
+                        </motion.span>
+                      ))}
+                    </motion.div>
+                  </motion.div>
+                </TiltCard>
               </motion.div>
             </div>
           </div>
         </section>
 
         {/* ─── Contact ────────────────────────────────────────────────────── */}
-        <section id="contact" className="py-32 relative overflow-hidden bg-white">
+        <div className="section-divider mx-8" />
+        <section id="contact" className="py-32 relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-50 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-purple-50 rounded-full blur-3xl" />
+            <div className="absolute top-10 left-1/4 w-72 h-72 bg-blue-900/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-purple-900/20 rounded-full blur-3xl" />
           </div>
           <div className="relative max-w-3xl mx-auto px-6 text-center">
             <motion.div
@@ -924,10 +1257,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-blue-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                Contact
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
                 Let&apos;s Work Together
               </h2>
-              <p className="text-lg text-slate-500 mb-12 max-w-xl mx-auto leading-relaxed">
+              <p className="text-lg text-slate-400 mb-12 max-w-xl mx-auto leading-relaxed">
                 Ready to bring your ideas to life? Let&apos;s discuss your next project and create
                 something amazing together.
               </p>
@@ -949,7 +1286,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-full font-semibold text-base hover:border-blue-400 hover:text-blue-600 transition-colors shadow-md"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/20 text-white rounded-full font-semibold text-base hover:border-blue-400/60 hover:text-blue-400 transition-colors"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -963,7 +1300,7 @@ export default function Home() {
       </main>
 
       {/* ─── Footer ─────────────────────────────────────────────────────── */}
-      <footer className="bg-slate-900 text-white py-16">
+      <footer className="bg-[#02080f] text-white py-16 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
             <div>
@@ -971,7 +1308,7 @@ export default function Home() {
                 MW.
               </div>
               <p className="text-slate-400 text-sm leading-relaxed">
-                ML & AI Engineer building scalable intelligent systems.
+                
               </p>
             </div>
             <div>
