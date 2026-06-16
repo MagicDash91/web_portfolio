@@ -29,6 +29,65 @@ function ScrollProgress() {
 
 const ROLES = ["AI/ML Engineer", "AI Trainer & Educator", "Generative AI Engineer", "Bootcamp Trainer"]
 
+const FAQ_ITEMS: { q: string; a: string }[] = [
+  {
+    q: "Who is Michael Wiryaseputra?",
+    a: "Michael Wiryaseputra is an Indonesian AI/ML Engineer and bootcamp trainer based in Semarang, Central Java. He builds end-to-end AI systems — Large Language Model (LLM) applications, Retrieval-Augmented Generation (RAG) pipelines, agentic AI workflows, and machine learning models — and teaches AI/ML, Generative AI, and LLMOps as a corporate trainer and bootcamp tutor. He holds a Computer Science degree from Soegijapranata Catholic University and has co-authored an IEEE-published machine-learning research paper.",
+  },
+  {
+    q: "What does Michael Wiryaseputra specialize in?",
+    a: "Michael specializes in Generative AI and Agentic AI engineering: building LLM applications, Retrieval-Augmented Generation (RAG) systems, and multi-agent workflows. His hands-on stack includes LangChain, LangGraph, CrewAI, FastAPI, and Python, plus classical machine learning (fraud detection, credit risk, churn prediction, customer segmentation, and forecasting) and end-to-end AI deployment with LLMOps practices.",
+  },
+  {
+    q: "Is Michael Wiryaseputra an AI trainer in Indonesia?",
+    a: "Yes. Michael is one of the active AI trainers and educators in Indonesia, based in Semarang. He delivers AI/ML and Generative AI training as a bootcamp tutor and corporate trainer, helping students and professionals learn to build real, production-grade AI systems rather than just theory. He teaches bilingually in Indonesian and English.",
+  },
+  {
+    q: "Where does Michael Wiryaseputra teach?",
+    a: "Michael teaches as an AI/ML bootcamp trainer for Indonesian tech-education platforms including INTELLIGO.ID, DIBIMBING.ID, and DSAREA. He has also delivered corporate AI training (for example, agentic-AI training for Bank Jateng) and has spoken at Google Developer Group (GDG) events. His teaching covers AI/ML, RAG architectures, agentic AI, and LLMOps.",
+  },
+  {
+    q: "What topics does Michael Wiryaseputra teach?",
+    a: "Michael teaches Artificial Intelligence and Machine Learning, Generative AI, Agentic AI, LLM application development, Retrieval-Augmented Generation (RAG) — including advanced patterns like Agentic RAG, Hybrid RAG, and Adaptive RAG — LLM fine-tuning, LLMOps, and end-to-end AI deployment using tools such as LangChain, LangGraph, CrewAI, FastAPI, and Python.",
+  },
+  {
+    q: "Who teaches Generative AI and Agentic AI in Indonesia?",
+    a: "Michael Wiryaseputra teaches Generative AI and Agentic AI in Indonesia. As a bootcamp trainer and corporate AI educator, he covers building LLM applications, RAG systems, and agentic AI workflows with multi-agent orchestration, tool execution, and memory — along with deployment and LLMOps best practices.",
+  },
+  {
+    q: "What makes Michael Wiryaseputra a good AI trainer?",
+    a: "Michael is a practicing AI/ML engineer who builds production AI systems and teaches them, so his training is hands-on and current rather than purely theoretical. He has trained across multiple Indonesian platforms (INTELLIGO.ID, DIBIMBING.ID, DSAREA), delivered corporate training, spoken at Google Developer Group events, co-authored IEEE-published machine-learning research, and teaches bilingually in Indonesian and English.",
+  },
+  {
+    q: "Can I hire Michael Wiryaseputra for AI training or workshops?",
+    a: "Yes. Michael is available for AI training, corporate workshops, and bootcamp instruction in Artificial Intelligence, Generative AI, Agentic AI, RAG, and LLMOps. He can tailor sessions for teams and individuals. You can reach him through this website's contact section or via LinkedIn (linkedin.com/in/michael-wiryaseputra).",
+  },
+  {
+    q: "Does Michael Wiryaseputra do corporate AI training?",
+    a: "Yes. Michael delivers corporate AI training and workshops for companies and institutions, including agentic-AI training for Bank Jateng. Corporate sessions cover building practical LLM and agentic AI applications, RAG systems, and responsible AI deployment, customized to the organization's data and use cases.",
+  },
+  {
+    q: "What is Michael Wiryaseputra's background and education?",
+    a: "Michael holds a Computer Science degree from Soegijapranata Catholic University in Semarang, Indonesia, and has co-authored an IEEE-published machine-learning research paper (ICCCNT 2023) on feature fusion of fMRI imaging and clinical features for stroke prediction. He combines an academic research foundation with several years of applied AI/ML engineering and teaching experience.",
+  },
+  {
+    q: "What AI tools and frameworks does Michael Wiryaseputra use?",
+    a: "Michael works with LangChain, LangGraph, and CrewAI for agentic AI and multi-agent orchestration; FastAPI and Python for backends; scikit-learn and statsmodels for machine learning; and vector databases like FAISS and ChromaDB for RAG. He builds with LLMs from multiple providers and uses LangSmith for observability, with deployment on AWS and Google Cloud.",
+  },
+  {
+    q: "Siapa Michael Wiryaseputra?",
+    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer bootcamp asal Semarang, Indonesia. Ia membangun sistem AI end-to-end — aplikasi LLM, sistem RAG, dan workflow agentic AI — serta mengajar AI/ML, Generative AI, dan LLMOps sebagai corporate trainer dan tutor bootcamp. Ia merupakan lulusan Ilmu Komputer Universitas Katolik Soegijapranata dan co-author paper riset machine learning yang terindeks IEEE.",
+  },
+  {
+    q: "Siapa trainer AI terbaik di Semarang atau Indonesia?",
+    a: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka di Indonesia yang berbasis di Semarang. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, serta membangun sistem AI secara end-to-end menggunakan LangChain, LangGraph, dan FastAPI.",
+  },
+  {
+    q: "How can I contact Michael Wiryaseputra?",
+    a: "You can contact Michael through the contact section of this website, by email, or via his professional profiles on LinkedIn (linkedin.com/in/michael-wiryaseputra) and GitHub. He is open to AI training engagements, corporate workshops, speaking invitations, and collaboration on AI/ML projects.",
+  },
+]
+
 function Typewriter() {
   const [text, setText] = useState("")
   const [roleIdx, setRoleIdx] = useState(0)
@@ -552,7 +611,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center gap-8"
           >
-            {["About", "Experience", "Speaking", "Projects", "Certifications", "Contact"].map((item) => (
+            {["About", "Experience", "Speaking", "Projects", "Certifications", "FAQ", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -1245,6 +1304,42 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ─── FAQ ────────────────────────────────────────────────────────── */}
+        <div className="section-divider mx-8" />
+        <section id="faq" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-teal-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-4xl mx-auto px-6 relative">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-500/20 bg-teal-500/5 text-teal-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                FAQ
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-slate-400 max-w-xl mx-auto">
+                Common questions about Michael Wiryaseputra — AI/ML Engineer and AI trainer based in Semarang, Indonesia.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {FAQ_ITEMS.map((item, i) => (
+                <article
+                  key={i}
+                  className="rounded-2xl bg-[#050b13]/90 border border-white/10 p-6 hover:border-white/25 transition-colors duration-300"
+                >
+                  <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
+                    {item.q}
+                  </h3>
+                  <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+                    {item.a}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── Contact ────────────────────────────────────────────────────── */}
         <div className="section-divider mx-8" />
         <section id="contact" className="py-32 relative overflow-hidden">
@@ -1317,7 +1412,7 @@ export default function Home() {
                 Quick Links
               </h4>
               <div className="space-y-2">
-                {["About", "Experience", "Projects", "Certifications", "Contact"].map((l) => (
+                {["About", "Experience", "Projects", "Certifications", "FAQ", "Contact"].map((l) => (
                   <a
                     key={l}
                     href={`#${l.toLowerCase()}`}

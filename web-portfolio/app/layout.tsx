@@ -252,6 +252,68 @@ const faqLd = {
   ],
 };
 
+const professionalServiceLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Michael Wiryaseputra — AI/ML Engineer & AI Trainer",
+  description:
+    "AI/ML engineering and AI training services — Generative AI, Agentic AI, RAG, and LLMOps — by Michael Wiryaseputra, an AI trainer and educator based in Semarang, Indonesia. Available for bootcamp training, corporate workshops, and AI system development.",
+  url: SITE_URL,
+  image: `${SITE_URL}/ax.jpg`,
+  email: "michwirja@gmail.com",
+  founder: { "@type": "Person", name: "Michael Wiryaseputra" },
+  areaServed: [
+    { "@type": "Country", name: "Indonesia" },
+    { "@type": "AdministrativeArea", name: "Central Java" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Semarang",
+    addressRegion: "Central Java",
+    addressCountry: "ID",
+  },
+  knowsAbout: [
+    "Generative AI",
+    "Agentic AI",
+    "Large Language Models",
+    "Retrieval-Augmented Generation",
+    "Machine Learning",
+    "LLMOps",
+  ],
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "AI/ML & Generative AI Bootcamp Training",
+        serviceType: "AI training",
+        description:
+          "Hands-on bootcamp training in Artificial Intelligence, Machine Learning, Generative AI, Agentic AI, RAG, and LLMOps for students and professionals.",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Corporate AI Training & Workshops",
+        serviceType: "Corporate AI training",
+        description:
+          "Customized corporate AI workshops covering LLM applications, agentic AI, RAG systems, and responsible AI deployment.",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Agentic AI & RAG System Development",
+        serviceType: "AI engineering",
+        description:
+          "End-to-end development of LLM applications, multi-agent systems, and RAG pipelines with LangChain, LangGraph, and FastAPI.",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -267,6 +329,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceLd) }}
         />
       </head>
       <body className={`${inter.className} ${playfair.variable} antialiased`} suppressHydrationWarning>
