@@ -88,6 +88,42 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
   },
 ]
 
+const DIFFERENTIATORS: { title: string; desc: string }[] = [
+  {
+    title: "A builder who teaches",
+    desc: "I'm a practicing AI/ML engineer shipping real production systems — so you learn current, real-world practice, not just slides and theory.",
+  },
+  {
+    title: "Hands-on & project-based",
+    desc: "Every session is build-along. You don't just watch — you walk away having built working LLM, RAG, and agentic AI applications yourself.",
+  },
+  {
+    title: "Research-backed fundamentals",
+    desc: "As an IEEE-published machine-learning researcher, I ground training in solid fundamentals, not hype — so what you learn stays relevant beyond the latest trend.",
+  },
+  {
+    title: "End-to-end, not snippets",
+    desc: "I cover the full pipeline — data, ML models, LLM apps, RAG, deployment, and LLMOps — so you understand how real AI systems actually fit together.",
+  },
+  {
+    title: "Bilingual & locally tuned",
+    desc: "I teach in both Bahasa Indonesia and English, tailored to the Indonesian tech community, industry context, and real local use cases.",
+  },
+  {
+    title: "Today's agentic stack",
+    desc: "I teach the tools teams actually use now — LangChain, LangGraph, CrewAI, agentic and hybrid RAG, and modern LLMOps — kept current as the field moves.",
+  },
+]
+
+const CARD_GLOWS = [
+  "from-blue-500 to-purple-600",
+  "from-cyan-500 to-blue-600",
+  "from-purple-500 to-pink-600",
+  "from-green-500 to-teal-600",
+  "from-orange-500 to-red-600",
+  "from-indigo-400 to-purple-500",
+]
+
 function Typewriter() {
   const [text, setText] = useState("")
   const [roleIdx, setRoleIdx] = useState(0)
@@ -870,6 +906,58 @@ export default function Home() {
         </section>
 
 
+        {/* ─── What Sets Me Apart ─────────────────────────────────────────── */}
+        <div className="section-divider mx-8" />
+        <section id="why" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-indigo-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-5xl mx-auto px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/20 bg-indigo-500/5 text-indigo-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
+                Why Me
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                What Sets Me Apart
+              </h2>
+              <p className="text-slate-400 max-w-xl mx-auto">
+                Why teams and learners choose to work with me as an AI/ML engineer and trainer
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {DIFFERENTIATORS.map((d, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ delay: (i % 2) * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <TiltCard
+                    glow={CARD_GLOWS[i % CARD_GLOWS.length]}
+                    tilt={4}
+                    className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300 h-full"
+                  >
+                    <div className="p-6">
+                      <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
+                        {d.title}
+                      </h3>
+                      <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+                        {d.desc}
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── Experience ─────────────────────────────────────────────────── */}
         <div className="section-divider mx-8" />
         <section id="experience" className="py-32 relative overflow-hidden">
@@ -1309,7 +1397,12 @@ export default function Home() {
         <section id="faq" className="py-32 relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-teal-600/5 rounded-full blur-[100px] pointer-events-none" />
           <div className="max-w-4xl mx-auto px-6 relative">
-            <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              className="text-center mb-16"
+            >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-teal-500/20 bg-teal-500/5 text-teal-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
                 <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
                 FAQ
@@ -1320,21 +1413,32 @@ export default function Home() {
               <p className="text-slate-400 max-w-xl mx-auto">
                 Common questions about Michael Wiryaseputra — AI/ML Engineer and AI trainer based in Semarang, Indonesia.
               </p>
-            </div>
+            </motion.div>
 
             <div className="space-y-4">
               {FAQ_ITEMS.map((item, i) => (
-                <article
+                <motion.div
                   key={i}
-                  className="rounded-2xl bg-[#050b13]/90 border border-white/10 p-6 hover:border-white/25 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
-                    {item.q}
-                  </h3>
-                  <p className="text-sm md:text-base text-slate-400 leading-relaxed">
-                    {item.a}
-                  </p>
-                </article>
+                  <TiltCard
+                    glow={CARD_GLOWS[i % CARD_GLOWS.length]}
+                    tilt={3}
+                    className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
+                  >
+                    <div className="p-6">
+                      <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
+                        {item.q}
+                      </h3>
+                      <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+                        {item.a}
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
               ))}
             </div>
           </div>

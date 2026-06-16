@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Michael Wiryaseputra",
   },
   description:
-    "Michael Wiryaseputra is an Indonesian AI/ML Engineer and bootcamp trainer based in Semarang. He builds end-to-end AI systems — LLM applications, RAG pipelines, and ML models with LangChain, LangGraph, and FastAPI — and teaches AI/ML, RAG, and LLMOps at INTELLIGO.ID, DIBIMBING.ID, and DSAREA. CS graduate of Soegijapranata Catholic University with 7 published ML research papers.",
+    "AI/ML Engineer & AI trainer in Semarang, Indonesia. Michael Wiryaseputra builds Generative AI, Agentic AI & RAG systems and teaches AI/ML bootcamps & corporate workshops.",
   keywords: [
     "Michael Wiryaseputra",
     "AI Trainer",
@@ -314,6 +314,17 @@ const professionalServiceLd = {
   ],
 };
 
+const profilePageLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  url: SITE_URL,
+  name: "Michael Wiryaseputra — AI/ML Engineer & AI Trainer",
+  dateCreated: "2025-05-25T00:00:00+07:00",
+  datePublished: "2025-05-25T00:00:00+07:00",
+  dateModified: new Date().toISOString(),
+  mainEntity: { "@type": "Person", name: "Michael Wiryaseputra", url: SITE_URL },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -333,6 +344,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageLd) }}
         />
       </head>
       <body className={`${inter.className} ${playfair.variable} antialiased`} suppressHydrationWarning>
