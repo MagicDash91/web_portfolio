@@ -27,7 +27,7 @@ function ScrollProgress() {
 
 // ── Typewriter ────────────────────────────────────────────────────────────────
 
-const ROLES = ["ML & AI Engineer", "LLM Specialist", "Bootcamp Tutor", "Data Scientist"]
+const ROLES = ["AI/ML Engineer", "AI Trainer & Educator", "Generative AI Engineer", "Bootcamp Trainer"]
 
 function Typewriter() {
   const [text, setText] = useState("")
@@ -726,8 +726,9 @@ export default function Home() {
                   transition={{ delay: 0.65 }}
                   className="text-sm md:text-base text-white/45 leading-relaxed mb-10 max-w-md"
                 >
-                  Machine Learning and AI Engineer passionate about building scalable intelligent
-                  systems and teaching the next generation of ML engineers.
+                  AI/ML Engineer and AI trainer based in Semarang, Indonesia — building
+                  Generative AI and Agentic AI systems, and teaching the next generation of
+                  AI engineers as a bootcamp trainer and educator.
                 </motion.p>
 
                 {/* CTA buttons */}
