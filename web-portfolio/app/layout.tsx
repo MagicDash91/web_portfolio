@@ -10,7 +10,7 @@ const playfair = Playfair_Display({
   weight: ["400", "700", "900"],
 });
 
-const SITE_URL = "https://web-portfolio-x7a5.vercel.app";
+const SITE_URL = "https://michaelwiryaseputra.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
