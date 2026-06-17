@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import {
   motion,
   useInView,
@@ -659,6 +660,13 @@ export default function Home() {
                 />
               </a>
             ))}
+            <Link
+              href="/blog"
+              className="relative text-sm font-medium transition-colors group py-1 text-white/75 hover:text-white"
+            >
+              Blog
+              <span className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300 rounded-full bg-white" />
+            </Link>
           </motion.div>
         </nav>
       </header>
