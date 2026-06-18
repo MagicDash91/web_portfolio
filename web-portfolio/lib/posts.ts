@@ -22,6 +22,167 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "what-is-rag-retrieval-augmented-generation",
+    title: "What is RAG? Retrieval-Augmented Generation Explained, with a Code Example",
+    description:
+      "A plain-English guide to RAG (Retrieval-Augmented Generation) — what it is, why it beats fine-tuning for most use cases, how the retrieve-then-generate pipeline works, and a Python example with LangChain. Includes a Bahasa Indonesia summary.",
+    date: "2026-06-18",
+    readingTime: "8 min read",
+    tags: ["RAG", "Retrieval-Augmented Generation", "LLM", "Generative AI", "LangChain", "Python"],
+    body: [
+      {
+        type: "p",
+        text: "Large language models are confident, fluent, and frequently wrong about anything outside their training data. Ask one about your company's internal handbook, a document published last week, or a private knowledge base, and it will either say it doesn't know — or worse, make something up. RAG is the technique that fixes this by giving the model the right information at the moment it answers.",
+      },
+      { type: "h2", text: "What is RAG?" },
+      {
+        type: "p",
+        text: "RAG stands for Retrieval-Augmented Generation. Instead of relying only on what an LLM memorized during training, a RAG system first retrieves relevant documents from a knowledge source, then hands those documents to the model as context so it can generate a grounded answer. In one sentence: RAG turns a closed-book exam into an open-book exam. The model no longer has to recall everything — it gets to read the relevant pages before answering.",
+      },
+      {
+        type: "p",
+        text: "This solves the two biggest weaknesses of plain LLMs. First, knowledge cutoffs: a model can't know about anything published after its training date, but a retriever can pull in today's documents. Second, hallucination: when the model answers from supplied source text rather than fuzzy memory, its answers are far more accurate — and you can cite exactly where each fact came from.",
+      },
+      { type: "h2", text: "Why use RAG instead of fine-tuning?" },
+      {
+        type: "p",
+        text: "A common question is why not just fine-tune the model on your data. For most teams, RAG is the better first choice:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Always current — update your knowledge by adding or editing documents, with no retraining. Fine-tuning bakes knowledge in and goes stale.",
+          "Cheaper and faster — indexing documents costs a fraction of a fine-tuning run, and you can ship in hours, not days.",
+          "Grounded and citable — because answers come from retrieved text, you can show sources and dramatically reduce hallucination.",
+          "Easy to control — to remove or correct information, you just change the underlying documents; nothing is locked inside model weights.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Fine-tuning still has its place — for teaching a model a specific style, format, or skill. But for the most common need, getting an LLM to answer accurately about your own data, RAG is usually the right tool.",
+      },
+      { type: "h2", text: "How RAG works: the two phases" },
+      {
+        type: "p",
+        text: "Every RAG system has two phases. The first happens once (or whenever your data changes); the second happens on every question.",
+      },
+      {
+        type: "image",
+        src: "/blog/rag-flow.svg",
+        alt: "RAG pipeline: in Phase 1 (indexing), documents are split into chunks, embedded into vectors, and stored in a vector store. In Phase 2 (per question), the question is embedded and used for a similarity search that retrieves the top-k relevant chunks, which are passed with the question to the LLM to generate a grounded answer.",
+        caption: "The two phases of RAG. Indexing (top) runs once to build a searchable vector store; retrieval + generation (bottom) runs on every question, pulling the most relevant chunks into the LLM's context.",
+      },
+      { type: "h3", text: "Phase 1 — Indexing (done ahead of time)" },
+      {
+        type: "ul",
+        items: [
+          "Load your documents — PDFs, web pages, wikis, databases — into a standard text form.",
+          "Split them into smaller chunks, because whole documents are too large to feed the model at once.",
+          "Embed each chunk — convert it into a vector (a list of numbers) that captures its meaning.",
+          "Store those vectors in a vector database so they can be searched by similarity.",
+        ],
+      },
+      { type: "h3", text: "Phase 2 — Retrieval & generation (on every query)" },
+      {
+        type: "ul",
+        items: [
+          "Embed the user's question into a vector using the same model.",
+          "Search the vector database for the chunks whose vectors are most similar to the question — these are the most relevant passages.",
+          "Stuff those chunks into the prompt as context, alongside the original question.",
+          "Generate an answer with the LLM, now grounded in the retrieved text.",
+        ],
+      },
+      {
+        type: "p",
+        text: "The key idea is similarity search. Embeddings place text with similar meaning close together in vector space, so retrieving the nearest vectors to the question reliably surfaces the passages most likely to contain the answer — even when the wording is different.",
+      },
+      { type: "h2", text: "How to build RAG: a minimal example" },
+      {
+        type: "p",
+        text: "Here is a compact RAG pipeline in Python using LangChain. It loads a PDF, splits and embeds it, stores the vectors, then answers a question using only the retrieved context. (If the building blocks below — loaders, connectors, LCEL — look unfamiliar, see my companion post on what LangChain is.)",
+      },
+      {
+        type: "code",
+        caption: "A minimal RAG pipeline: index a PDF, then answer from retrieved context.",
+        code: `from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_community.vectorstores import FAISS
+from langchain_core.prompts import ChatPromptTemplate
+
+# --- Phase 1: Indexing (run once) ---
+docs = PyPDFLoader("handbook.pdf").load()
+
+splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+chunks = splitter.split_documents(docs)
+
+embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+vectorstore = FAISS.from_documents(chunks, embeddings)
+retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
+
+# --- Phase 2: Retrieve + generate (per question) ---
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
+
+prompt = ChatPromptTemplate.from_template(
+    "Answer the question using ONLY the context below. "
+    "If the answer isn't in the context, say you don't know.\\n\\n"
+    "Context:\\n{context}\\n\\nQuestion: {question}"
+)
+
+def format_docs(docs):
+    return "\\n\\n".join(d.page_content for d in docs)
+
+question = "What is the company's remote-work policy?"
+retrieved = retriever.invoke(question)            # similarity search
+context = format_docs(retrieved)
+
+answer = (prompt | llm).invoke({"context": context, "question": question})
+print(answer.content)`,
+      },
+      {
+        type: "p",
+        text: "Read it as the two phases. Indexing loads the PDF, splits it into overlapping chunks, embeds them, and stores them in a FAISS vector store. Then for each question, the retriever finds the four most relevant chunks, we paste them into the prompt as context, and the model answers from that context only — note the instruction telling it to say \"I don't know\" rather than guess. That single instruction, combined with real retrieved context, is what makes RAG answers trustworthy.",
+      },
+      { type: "h2", text: "From basic RAG to agentic RAG" },
+      {
+        type: "p",
+        text: "The pipeline above is linear: retrieve once, then answer. That works well, but it can't recover when the first retrieval is weak. Agentic RAG adds a feedback loop — the system grades whether the retrieved context is good enough and, if not, re-queries or rephrases before answering. That cyclical control flow is exactly what LangGraph is built for, and it's the subject of my LangGraph post. Basic RAG is the foundation; agentic RAG is the upgrade once accuracy really matters.",
+      },
+      { type: "h2", text: "When should you use RAG?" },
+      {
+        type: "p",
+        text: "Reach for RAG whenever you need an LLM to answer accurately about specific, private, or frequently-changing information: internal documentation, customer-support knowledge bases, product manuals, legal or policy documents, or research libraries. If your task is pure reasoning or general writing with no external facts involved, you may not need retrieval at all. But the moment correct, sourced answers about your own data matter, RAG is the default architecture.",
+      },
+      {
+        type: "cta",
+        text: "Want to build production RAG and agentic-RAG systems — chunking strategies, vector databases, evaluation, and deployment — hands-on? That's exactly what I teach in my AI/ML bootcamps and corporate workshops.",
+      },
+      { type: "h2", text: "Apa itu RAG? (Ringkasan Bahasa Indonesia)" },
+      {
+        type: "p",
+        text: "RAG (Retrieval-Augmented Generation) adalah teknik yang membuat LLM menjawab berdasarkan dokumen Anda sendiri. Alih-alih hanya mengandalkan ingatan dari masa pelatihan, sistem RAG terlebih dahulu mengambil (retrieve) dokumen yang relevan, lalu memberikannya ke model sebagai konteks agar jawabannya akurat dan dapat dirujuk sumbernya. Singkatnya: RAG mengubah ujian tutup buku menjadi ujian buka buku.",
+      },
+      { type: "h3", text: "Mengapa pakai RAG daripada fine-tuning?" },
+      {
+        type: "ul",
+        items: [
+          "Selalu terbarui — cukup tambah atau ubah dokumen, tanpa melatih ulang model.",
+          "Lebih murah dan cepat — indexing dokumen jauh lebih hemat daripada proses fine-tuning.",
+          "Terverifikasi — jawaban berasal dari teks yang diambil, sehingga sumbernya bisa ditampilkan dan halusinasi berkurang.",
+          "Mudah dikontrol — untuk mengoreksi informasi, Anda cukup mengubah dokumennya.",
+        ],
+      },
+      {
+        type: "p",
+        text: "RAG bekerja dalam dua fase: indexing (memuat, memecah, meng-embed, dan menyimpan dokumen sebagai vektor) yang dilakukan sekali, lalu retrieval & generation (mencari potongan paling relevan untuk setiap pertanyaan dan menjawab berdasarkan konteks tersebut) yang berjalan setiap kali ada pertanyaan. Gunakan RAG ketika Anda butuh LLM menjawab akurat tentang data spesifik atau privat milik Anda.",
+      },
+      {
+        type: "cta",
+        text: "Ingin belajar membangun sistem RAG dan agentic AI nyata secara hands-on? Itulah yang saya ajarkan di bootcamp dan corporate workshop AI/ML saya.",
+      },
+    ],
+  },
+  {
     slug: "what-is-langgraph-and-why-it-matters",
     title: "What is LangGraph? Why Use It, How It Works, and a Code Example",
     description:

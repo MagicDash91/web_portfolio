@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 400" width="860" height="400" role="img" aria-label="Retrieval-Augmented Generation pipeline diagram. Phase 1, indexing, runs once: documents are split into chunks, embedded into vectors, and stored in a vector store. Phase 2, retrieval and generation, runs on every question: the question is embedded and used for a similarity search that retrieves the top-k relevant chunks from the vector store; those chunks plus the question are passed to the LLM, which generates a grounded answer.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8b93a7"/>
+    </marker>
+    <marker id="ahd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#f59e0b"/>
+    </marker>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="860" height="400" rx="12" fill="#050b13"/>
+
+  <!-- Phase 1 label -->
+  <text x="30" y="38" fill="#60a5fa" font-family="monospace" font-size="13">Phase 1 · Indexing (run once)</text>
+
+  <!-- top row edges -->
+  <line x1="160" y1="81" x2="220" y2="81" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="330" y1="81" x2="390" y2="81" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="510" y1="81" x2="570" y2="81" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Documents -->
+  <rect x="30" y="56" width="130" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="95" y="86" fill="#e5e7eb" font-family="monospace" font-size="13" text-anchor="middle">Documents</text>
+
+  <!-- Chunks -->
+  <rect x="220" y="56" width="110" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="275" y="86" fill="#e5e7eb" font-family="monospace" font-size="13" text-anchor="middle">Chunks</text>
+
+  <!-- Embeddings -->
+  <rect x="390" y="56" width="120" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="450" y="86" fill="#e5e7eb" font-family="monospace" font-size="12" text-anchor="middle">Embeddings</text>
+
+  <!-- Vector Store -->
+  <rect x="570" y="56" width="160" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="650" y="86" fill="#e5e7eb" font-family="monospace" font-size="13" text-anchor="middle">Vector Store</text>
+
+  <!-- retrieval edge (dashed) from Vector Store down to Top-k chunks -->
+  <path d="M650 106 C 650 175, 495 175, 495 236" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ahd)"/>
+  <text x="600" y="172" fill="#f59e0b" font-family="monospace" font-size="12" text-anchor="middle">retrieve top-k</text>
+
+  <!-- Phase 2 label -->
+  <text x="30" y="218" fill="#22c55e" font-family="monospace" font-size="13">Phase 2 · Retrieval + Generation (per question)</text>
+
+  <!-- bottom row edges -->
+  <line x1="160" y1="261" x2="220" y2="261" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="430" y1="261" x2="430" y2="261" stroke="#8b93a7" stroke-width="2"/>
+  <line x1="560" y1="261" x2="620" y2="261" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="730" y1="261" x2="765" y2="261" stroke="#8b93a7" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- Question -->
+  <rect x="30" y="236" width="130" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="95" y="266" fill="#e5e7eb" font-family="monospace" font-size="13" text-anchor="middle">Question</text>
+
+  <!-- Embed + search -->
+  <rect x="220" y="236" width="180" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="310" y="266" fill="#e5e7eb" font-family="monospace" font-size="12" text-anchor="middle">Embed + search</text>
+
+  <!-- search to store query edge (dashed, upward) -->
+  <path d="M310 236 C 310 200, 650 200, 650 106" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.7"/>
+
+  <!-- Top-k chunks -->
+  <rect x="430" y="236" width="130" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="495" y="262" fill="#e5e7eb" font-family="monospace" font-size="12" text-anchor="middle">Top-k</text>
+  <text x="495" y="278" fill="#e5e7eb" font-family="monospace" font-size="12" text-anchor="middle">chunks</text>
+
+  <!-- LLM -->
+  <rect x="620" y="236" width="110" height="50" rx="10" fill="#0a1322" stroke="url(#bg)" stroke-width="2"/>
+  <text x="675" y="266" fill="#e5e7eb" font-family="monospace" font-size="13" text-anchor="middle">LLM</text>
+
+  <!-- Answer -->
+  <circle cx="800" cy="261" r="24" fill="none" stroke="url(#bg)" stroke-width="2"/>
+  <text x="800" y="265" fill="#e5e7eb" font-family="monospace" font-size="11" text-anchor="middle">Answer</text>
+
+  <text x="430" y="378" fill="#64748b" font-family="monospace" font-size="11" text-anchor="middle">indexing runs once · retrieval + generation runs on every question</text>
+</svg>
