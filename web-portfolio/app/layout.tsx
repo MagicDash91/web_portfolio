@@ -128,6 +128,7 @@ const jsonLd = {
     "https://app.rakamin.com/profile/michael-wiryaseputra-i14q2ggwtyep0zxc",
     "https://app.9am.works/talent/mich-wirja",
     "https://www.kompasiana.com/michaelwiryaseputra0634",
+    "https://medium.com/@michwirja",
     // TODO: confirm exact ResearchGate slug from the live profile URL
     "https://www.researchgate.net/profile/Michael-Wiryaseputra",
   ],
