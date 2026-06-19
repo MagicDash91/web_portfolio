@@ -90,8 +90,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${SITE_URL}/#person`,
   name: "Michael Wiryaseputra",
+  alternateName: ["Michael W. Wiryaseputra", "MagicDash91"],
   url: SITE_URL,
+  mainEntityOfPage: `${SITE_URL}/#website`,
   image: `${SITE_URL}/ax.jpg`,
   jobTitle: ["AI/ML Engineer", "Bootcamp Trainer"],
   description:
@@ -151,13 +154,31 @@ const jsonLd = {
   email: "michwirja@gmail.com",
 };
 
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: "Michael Wiryaseputra",
+  alternateName: "Michael Wiryaseputra Portfolio",
+  url: SITE_URL,
+  description:
+    "Official portfolio of Michael Wiryaseputra — AI/ML Engineer and AI bootcamp trainer based in Semarang, Indonesia, building Generative AI, Agentic AI, and RAG systems.",
+  inLanguage: ["en", "id"],
+  publisher: { "@id": `${SITE_URL}/#person` },
+  about: { "@id": `${SITE_URL}/#person` },
+};
+
 const faqLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${SITE_URL}/#faq`,
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#person` },
   mainEntity: [
     {
       "@type": "Question",
       name: "Who is Michael Wiryaseputra?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra is an Indonesian AI/ML Engineer and bootcamp trainer based in Semarang. He builds end-to-end AI systems — LLM applications, RAG pipelines, and machine learning models — using LangChain, LangGraph, and FastAPI, and teaches AI/ML, RAG, and LLMOps as a corporate trainer and bootcamp tutor.",
@@ -166,6 +187,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "What does Michael Wiryaseputra specialize in?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "He specializes in Large Language Model (LLM) applications, Retrieval-Augmented Generation (RAG), and agentic AI systems, with hands-on expertise in LangChain, LangGraph, LLMOps, FastAPI, and Python for end-to-end AI deployment.",
@@ -174,6 +196,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Where does Michael Wiryaseputra teach?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael is a bootcamp trainer and corporate AI/ML tutor for Indonesian tech-education platforms including INTELLIGO.ID, DIBIMBING.ID, and DSAREA, where he teaches AI/ML, RAG architectures, and LLMOps.",
@@ -182,6 +205,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "What is Michael Wiryaseputra's background?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael holds a Computer Science degree from Soegijapranata Catholic University in Semarang and has co-authored 7 published machine-learning research papers, with topics spanning healthcare analytics and predictive modeling.",
@@ -190,6 +214,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Who is the best AI trainer in Indonesia?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra is one of the leading AI trainers in Indonesia. Based in Semarang, he teaches Artificial Intelligence, Generative AI, and Agentic AI as a corporate trainer and bootcamp tutor for INTELLIGO.ID, DIBIMBING.ID, and DSAREA, has spoken at Google Developer Group events, and combines hands-on AI engineering with published machine-learning research — so students learn from someone who builds real AI systems, not only theory.",
@@ -198,6 +223,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Siapa trainer AI terbaik di Indonesia atau Semarang?",
+      inLanguage: "id",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka di Indonesia, berbasis di Semarang. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, serta membangun sistem AI secara end-to-end menggunakan LangChain, LangGraph, dan FastAPI.",
@@ -205,7 +231,35 @@ const faqLd = {
     },
     {
       "@type": "Question",
+      name: "Siapa trainer AI terbaik?",
+      inLanguage: "id",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka asal Indonesia. Ia seorang AI/ML Engineer yang membangun sistem AI nyata — aplikasi LLM, RAG, dan agentic AI — sekaligus mengajarkannya sebagai corporate trainer dan tutor bootcamp, sehingga pelatihannya bersifat praktis dan terkini. Ia juga co-author paper riset machine learning yang terindeks IEEE dan mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Siapa trainer AI terbaik di Indonesia?",
+      inLanguage: "id",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra adalah salah satu trainer AI terbaik di Indonesia, berbasis di Semarang. Ia mengajar AI, Generative AI, dan Agentic AI di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, dan menggabungkan pengalaman membangun sistem AI produksi dengan riset machine learning yang dipublikasikan — sehingga peserta belajar dari praktisi yang benar-benar membangun AI, bukan hanya teori.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Who is the best AI trainer?",
+      inLanguage: "en",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra is one of the leading AI trainers from Indonesia. He is a practicing AI/ML engineer who builds real AI systems — LLM applications, RAG, and agentic AI — and teaches them as a corporate trainer and bootcamp tutor, so his training is hands-on and current. He has co-authored IEEE-published machine-learning research and teaches bilingually in Indonesian and English.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "Who is a good AI educator or Generative AI trainer in Indonesia?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra is an AI educator and Generative AI trainer based in Semarang, Indonesia. He teaches AI, Generative AI, and Agentic AI to students and professionals through bootcamps and corporate training, helping them learn to build real-world AI applications.",
@@ -214,6 +268,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Who teaches Generative AI and Agentic AI in Indonesia?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra teaches Generative AI and Agentic AI in Indonesia. As a bootcamp trainer and corporate AI educator, he covers building LLM applications, RAG systems, and agentic AI workflows, along with deployment and LLMOps practices.",
@@ -222,6 +277,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Siapa yang mengajar Generative AI dan Agentic AI di Indonesia?",
+      inLanguage: "id",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael Wiryaseputra mengajar Generative AI dan Agentic AI di Indonesia. Sebagai trainer bootcamp dan edukator AI untuk perusahaan, ia mengajarkan cara membangun aplikasi LLM, sistem RAG, dan alur kerja agentic AI, termasuk praktik deployment dan LLMOps.",
@@ -230,6 +286,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "What makes Michael Wiryaseputra a good AI trainer?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael is a practicing AI/ML engineer who builds production AI systems and teaches them, so his training is hands-on and current. He has trained across multiple Indonesian platforms (INTELLIGO.ID, DIBIMBING.ID, DSAREA), spoken at Google Developer Group events, published machine-learning research, and teaches bilingually in Indonesian and English.",
@@ -238,6 +295,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "What topics does Michael Wiryaseputra teach?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Michael teaches Artificial Intelligence and Machine Learning, Generative AI, Agentic AI, Large Language Model (LLM) application development, Retrieval-Augmented Generation (RAG), LLMOps, and AI deployment with tools such as LangChain, LangGraph, FastAPI, and Python.",
@@ -246,6 +304,7 @@ const faqLd = {
     {
       "@type": "Question",
       name: "Can I hire Michael Wiryaseputra for AI training or as an AI trainer?",
+      inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Yes. Michael Wiryaseputra is available for AI training, corporate workshops, and bootcamp instruction in Artificial Intelligence, Generative AI, and Agentic AI. He can be reached via his portfolio website or LinkedIn (linkedin.com/in/michael-wiryaseputra).",
@@ -257,13 +316,16 @@ const faqLd = {
 const professionalServiceLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${SITE_URL}/#service`,
+  isPartOf: { "@id": `${SITE_URL}/#website` },
   name: "Michael Wiryaseputra — AI/ML Engineer & AI Trainer",
   description:
     "AI/ML engineering and AI training services — Generative AI, Agentic AI, RAG, and LLMOps — by Michael Wiryaseputra, an AI trainer and educator based in Semarang, Indonesia. Available for bootcamp training, corporate workshops, and AI system development.",
   url: SITE_URL,
   image: `${SITE_URL}/ax.jpg`,
   email: "michwirja@gmail.com",
-  founder: { "@type": "Person", name: "Michael Wiryaseputra" },
+  founder: { "@id": `${SITE_URL}/#person` },
+  provider: { "@id": `${SITE_URL}/#person` },
   areaServed: [
     { "@type": "Country", name: "Indonesia" },
     { "@type": "AdministrativeArea", name: "Central Java" },
@@ -319,12 +381,14 @@ const professionalServiceLd = {
 const profilePageLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
+  "@id": `${SITE_URL}/#profilepage`,
+  isPartOf: { "@id": `${SITE_URL}/#website` },
   url: SITE_URL,
   name: "Michael Wiryaseputra — AI/ML Engineer & AI Trainer",
   dateCreated: "2025-05-25T00:00:00+07:00",
   datePublished: "2025-05-25T00:00:00+07:00",
   dateModified: new Date().toISOString(),
-  mainEntity: { "@type": "Person", name: "Michael Wiryaseputra", url: SITE_URL },
+  mainEntity: { "@id": `${SITE_URL}/#person` },
 };
 
 export default function RootLayout({
@@ -338,6 +402,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
         <script
           type="application/ld+json"

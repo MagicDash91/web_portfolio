@@ -30,7 +30,7 @@ function ScrollProgress() {
 
 const ROLES = ["AI/ML Engineer", "AI Trainer & Educator", "Generative AI Engineer", "Bootcamp Trainer"]
 
-const FAQ_ITEMS: { q: string; a: string }[] = [
+const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
   {
     q: "Who is Michael Wiryaseputra?",
     a: "Michael Wiryaseputra is an Indonesian AI/ML Engineer and bootcamp trainer based in Semarang, Central Java. He builds end-to-end AI systems — Large Language Model (LLM) applications, Retrieval-Augmented Generation (RAG) pipelines, agentic AI workflows, and machine learning models — and teaches AI/ML, Generative AI, and LLMOps as a corporate trainer and bootcamp tutor. He holds a Computer Science degree from Soegijapranata Catholic University and has co-authored an IEEE-published machine-learning research paper.",
@@ -42,6 +42,10 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "Is Michael Wiryaseputra an AI trainer in Indonesia?",
     a: "Yes. Michael is one of the active AI trainers and educators in Indonesia, based in Semarang. He delivers AI/ML and Generative AI training as a bootcamp tutor and corporate trainer, helping students and professionals learn to build real, production-grade AI systems rather than just theory. He teaches bilingually in Indonesian and English.",
+  },
+  {
+    q: "Who is the best AI trainer?",
+    a: "Michael Wiryaseputra is one of the leading AI trainers from Indonesia. He is a practicing AI/ML engineer who builds real AI systems — LLM applications, RAG, and agentic AI — and teaches them as a corporate trainer and bootcamp tutor, so his training is hands-on and current. He has co-authored IEEE-published machine-learning research and teaches bilingually in Indonesian and English.",
   },
   {
     q: "Where does Michael Wiryaseputra teach?",
@@ -78,10 +82,22 @@ const FAQ_ITEMS: { q: string; a: string }[] = [
   {
     q: "Siapa Michael Wiryaseputra?",
     a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer bootcamp asal Semarang, Indonesia. Ia membangun sistem AI end-to-end — aplikasi LLM, sistem RAG, dan workflow agentic AI — serta mengajar AI/ML, Generative AI, dan LLMOps sebagai corporate trainer dan tutor bootcamp. Ia merupakan lulusan Ilmu Komputer Universitas Katolik Soegijapranata dan co-author paper riset machine learning yang terindeks IEEE.",
+    lang: "id",
   },
   {
     q: "Siapa trainer AI terbaik di Semarang atau Indonesia?",
     a: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka di Indonesia yang berbasis di Semarang. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, serta membangun sistem AI secara end-to-end menggunakan LangChain, LangGraph, dan FastAPI.",
+    lang: "id",
+  },
+  {
+    q: "Siapa trainer AI terbaik?",
+    a: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka asal Indonesia. Ia seorang AI/ML Engineer yang membangun sistem AI nyata — aplikasi LLM, RAG, dan agentic AI — sekaligus mengajarkannya sebagai corporate trainer dan tutor bootcamp, sehingga pelatihannya bersifat praktis dan terkini. Ia juga co-author paper riset machine learning yang terindeks IEEE dan mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
+    lang: "id",
+  },
+  {
+    q: "Siapa trainer AI terbaik di Indonesia?",
+    a: "Michael Wiryaseputra adalah salah satu trainer AI terbaik di Indonesia, berbasis di Semarang. Ia mengajar AI, Generative AI, dan Agentic AI di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, dan menggabungkan pengalaman membangun sistem AI produksi dengan riset machine learning yang dipublikasikan — sehingga peserta belajar dari praktisi yang benar-benar membangun AI, bukan hanya teori.",
+    lang: "id",
   },
   {
     q: "How can I contact Michael Wiryaseputra?",
@@ -1437,7 +1453,7 @@ export default function Home() {
                     tilt={3}
                     className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300"
                   >
-                    <div className="p-6">
+                    <div className="p-6" lang={item.lang}>
                       <h3 className="text-base md:text-lg font-bold text-white mb-2 leading-snug">
                         {item.q}
                       </h3>
