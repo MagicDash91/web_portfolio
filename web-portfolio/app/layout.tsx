@@ -132,6 +132,9 @@ const jsonLd = {
     "https://app.9am.works/talent/mich-wirja",
     "https://www.kompasiana.com/michaelwiryaseputra0634",
     "https://medium.com/@michwirja",
+    "https://www.analyticsvidhya.com/blog/author/michael485/",
+    "https://www.quora.com/profile/Michael-Wiryaseputra",
+    "https://www.superprof.co.id/engineer-bootcamp-trainer-building-llm-rag-systems-with-langchain-langgraph-fastapi-yrs-corporate.html",
     // TODO: confirm exact ResearchGate slug from the live profile URL
     "https://www.researchgate.net/profile/Michael-Wiryaseputra",
   ],
