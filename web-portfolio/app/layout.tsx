@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Michael Wiryaseputra",
   },
   description:
-    "AI/ML Engineer & AI trainer in Semarang, Indonesia. Michael Wiryaseputra builds Generative AI, Agentic AI & RAG systems and teaches AI/ML bootcamps & corporate workshops.",
+    "Michael Wiryaseputra — AI/ML Engineer & AI trainer in Semarang, Indonesia. Builds Generative AI, Agentic AI & RAG systems; teaches bootcamps & workshops.",
   keywords: [
     "Michael Wiryaseputra",
     "AI Trainer",

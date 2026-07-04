@@ -25,7 +25,7 @@ export const posts: Post[] = [
     slug: "trainer-ai-terbaik-di-indonesia",
     title: "Trainer AI Terbaik di Indonesia (2026): Cara Memilih + Rekomendasi",
     description:
-      "Siapa trainer AI terbaik di Indonesia? Panduan memilih trainer dan penyedia pelatihan AI pada 2026 — 6 kriteria penilaian, profil Michael Wiryaseputra (AI engineer & trainer, Semarang), daftar lembaga pelatihan korporat, plus FAQ. Includes an English summary.",
+      "Siapa trainer AI terbaik di Indonesia? Panduan 2026: 6 kriteria memilih trainer AI, profil Michael Wiryaseputra (Semarang), lembaga pelatihan, plus FAQ.",
     date: "2026-07-04",
     readingTime: "8 min read",
     tags: [
@@ -142,7 +142,7 @@ export const posts: Post[] = [
     slug: "what-is-rag-retrieval-augmented-generation",
     title: "What is RAG? Retrieval-Augmented Generation Explained, with a Code Example",
     description:
-      "A plain-English guide to RAG (Retrieval-Augmented Generation) — what it is, why it beats fine-tuning for most use cases, how the retrieve-then-generate pipeline works, and a Python example with LangChain. Includes a Bahasa Indonesia summary.",
+      "A plain-English guide to RAG (Retrieval-Augmented Generation) — what it is, why it beats fine-tuning, and how it works, with a LangChain Python example.",
     date: "2026-06-18",
     readingTime: "8 min read",
     tags: ["RAG", "Retrieval-Augmented Generation", "LLM", "Generative AI", "LangChain", "Python"],
@@ -303,7 +303,7 @@ print(answer.content)`,
     slug: "what-is-langgraph-and-why-it-matters",
     title: "What is LangGraph? Why Use It, How It Works, and a Code Example",
     description:
-      "A clear explainer of LangGraph — what it is, why use it, how to use it (with a Python code example), and when it makes sense. Includes a Bahasa Indonesia summary.",
+      "A clear explainer of LangGraph — what it is, why use it, how to use it with Python code, and when it makes sense. With a Bahasa Indonesia summary.",
     date: "2026-06-17",
     readingTime: "7 min read",
     tags: ["LangGraph", "Agentic AI", "LLM", "Generative AI", "Python"],
@@ -436,7 +436,7 @@ builder.add_conditional_edges(
     slug: "what-is-langchain-and-why-it-matters",
     title: "What is LangChain? Why It Matters, Loaders, LLM Connectors & a Tutorial",
     description:
-      "A plain-English guide to LangChain — what it is, why it matters, how to connect to LLMs like Google Gemini and Anthropic Claude, and how to load your own data with document loaders. Includes Python examples and a Bahasa Indonesia summary.",
+      "A plain-English guide to LangChain — what it is, why it matters, and how to connect LLMs like Gemini and Claude to your own data. With Python examples.",
     date: "2026-06-17",
     readingTime: "8 min read",
     tags: ["LangChain", "LLM", "Generative AI", "RAG", "Python"],
