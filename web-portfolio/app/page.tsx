@@ -528,7 +528,16 @@ const projects = [
 
 const FILTERS = ["All", "NLP", "ML", "RAG"]
 
-const speakingEvents = [
+const speakingEvents: {
+  poster: string
+  event: string
+  organizer: string
+  venue: string
+  date?: string
+  topics: string[]
+  color: string
+  announcement?: string
+}[] = [
   {
     poster: "/poster1.jpeg",
     event: "Guest Speaker",
@@ -536,6 +545,7 @@ const speakingEvents = [
     venue: "UIN Syarif Hidayatullah Jakarta",
     topics: ["Machine Learning Model Development", "LLMs & RAG", "End-to-End AI Deployment"],
     color: "from-blue-500 to-green-500",
+    announcement: "https://www.instagram.com/p/DV3JvE8GkPo/",
   },
   {
     poster: "/poster2.jpeg",
@@ -545,6 +555,7 @@ const speakingEvents = [
     date: "22 April 2026",
     topics: ["Supervised Learning", "Model Training & Selection", "Evaluation Metrics"],
     color: "from-red-500 to-orange-500",
+    announcement: "https://www.instagram.com/p/DXUHzyZE9iD/",
   },
   {
     poster: "/poster3.jpeg",
@@ -554,6 +565,80 @@ const speakingEvents = [
     date: "11 February 2026",
     topics: ["Basic SQL"],
     color: "from-green-600 to-emerald-500",
+    announcement: "https://www.instagram.com/p/DUmlo-AE1P3/",
+  },
+]
+
+const MENTIONS: {
+  quote: string
+  author: string
+  role: string
+  context: string
+  href: string
+  lang?: string
+}[] = [
+  {
+    quote: "Mentor: Michael Wiryaseputra (AI/ML Engineer)",
+    author: "DSAREA (digitalskillsarea)",
+    role: "Indonesian tech bootcamp — official account",
+    context: "AI Engineer Bootcamp announcement",
+    href: "https://www.linkedin.com/posts/aibootcamp-aiengineer-belajarai-share-7378981427943694336-dMtH/",
+    lang: "id",
+  },
+  {
+    quote: "Thanks to coach Michael Wiryaseputra 🫡",
+    author: "Muhammad Avilla",
+    role: "Data Analyst, AN-NISA Hospital Tangerang",
+    context: "On completing the DSAREA AI & ML Engineer Bootcamp",
+    href: "https://www.linkedin.com/posts/muhammad-avilla_projek-akhir-sertifikat-ai-ml-engineer-ugcPost-7442858908488011777-HGdQ/",
+  },
+  {
+    quote:
+      "Terima kasih kepada mas Michael Wiryaseputra dan seluruh mentor DSAREA atas ilmu dan bimbingannya.",
+    author: "Rezky Agus Setiawan",
+    role: "AI Engineer Bootcamp graduate, DSAREA",
+    context: "Final project: RAG + ML end-to-end system",
+    href: "https://www.linkedin.com/posts/rezky-agus-setiawan_ugcPost-7403283843203670016-J80y/",
+    lang: "id",
+  },
+  {
+    quote: "Big thanks to Mr Michael Wiryaseputra & Mr Akmal Fauzan",
+    author: "Alifia Chika Intan",
+    role: "Operations & Data Analyst",
+    context: "Excel & SQL training — Komunitas Excel Indonesia",
+    href: "https://www.linkedin.com/posts/alifia-chika-intan-880b94202_excel-sql-ugcPost-7427370268735676418-Inf7/",
+  },
+  {
+    quote:
+      "Terima kasih Ka Dhiya Ilham Trihatmaja, Ka Hilman Singgih Wicaksana dan Michael Wiryaseputra sudah mau menjadi speaker.",
+    author: "Kheylina Lidya Situmorang",
+    role: "Data & AI Engineering",
+    context: "Speaker — Sharing Online Santuy, Data Community Gen Z",
+    href: "https://www.linkedin.com/posts/kheylina-lidya_kadang-orang-cuma-lihat-hasilnya-tapi-jarang-ugcPost-7438487412537892864-iEOb/",
+    lang: "id",
+  },
+  {
+    quote: "Michael Wiryaseputra sebagai AI Engineer",
+    author: "Dhiya Ilham Trihatmaja",
+    role: "Data Analyst, OLX Astra",
+    context: "Panelist — “Prepare Yourself: Data Jobs in 2026” webinar",
+    href: "https://www.linkedin.com/posts/dhiya-ilhamtri_prepare-yourself-data-jobs-in-2026-ugcPost-7438509506696826880-FsNn/",
+    lang: "id",
+  },
+  {
+    quote: "Bro Michael Wiryaseputra sebagai AI Engineer",
+    author: "Hilman Singgih Wicaksana",
+    role: "Lecturer & AI Researcher",
+    context: "Co-speaker — Sharing Online Santuy",
+    href: "https://www.linkedin.com/posts/hilmansinggihw_datascience-machinelearning-aiengineer-ugcPost-7438800062824198144-SLh8/",
+    lang: "id",
+  },
+  {
+    quote: "cc: ARIF Analytics, kak Cornellius Y., and kak Michael Wiryaseputra",
+    author: "Ana Farida",
+    role: "Analytics & Machine Learning",
+    context: "Prompt engineering seminar takeaways",
+    href: "https://www.linkedin.com/posts/anafarida1_promptengineering-ai-artificialintelligence-ugcPost-7433457635154178048-CssS/",
   },
 ]
 
@@ -664,7 +749,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             className="hidden md:flex items-center gap-8"
           >
-            {["About", "Experience", "Speaking", "Projects", "Certifications", "FAQ", "Contact"].map((item) => (
+            {["About", "Experience", "Speaking", "Mentions", "Projects", "Certifications", "FAQ", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -1047,8 +1132,15 @@ export default function Home() {
                     tilt={4}
                     className="bg-[#050b13]/90 border border-white/10 group-hover:border-white/25 transition-colors duration-300 flex flex-col"
                   >
-                    {/* Poster */}
-                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "3/4" }}>
+                    {/* Poster — links to the organizer's official announcement */}
+                    <a
+                      href={ev.announcement}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${ev.event} — organizer's announcement`}
+                      className="block relative w-full overflow-hidden"
+                      style={{ aspectRatio: "3/4" }}
+                    >
                       <Image
                         src={ev.poster}
                         alt={ev.event}
@@ -1065,7 +1157,7 @@ export default function Home() {
                       >
                         Speaker
                       </motion.div>
-                    </div>
+                    </a>
 
                     {/* Details */}
                     <motion.div
@@ -1103,6 +1195,63 @@ export default function Home() {
                       </motion.div>
                     </motion.div>
                   </TiltCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Mentions & Testimonials ────────────────────────────────────── */}
+        <div className="section-divider mx-8" />
+        <section id="mentions" className="py-32 relative overflow-hidden">
+          <div className="absolute top-0 left-1/3 w-[500px] h-[200px] bg-pink-600/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-5xl mx-auto px-6 relative">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-pink-500/20 bg-pink-500/5 text-pink-400/80 text-[10px] font-semibold tracking-[0.2em] uppercase mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-pulse" />
+                Mentions
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                What People Say
+              </h2>
+              <p className="text-slate-400 max-w-xl mx-auto">
+                Students, colleagues, and organizations mentioning my training and speaking on LinkedIn
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {MENTIONS.map((m, i) => (
+                <motion.div
+                  key={m.href}
+                  initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: (i % 2) * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="h-full"
+                >
+                  <div className="h-full flex flex-col rounded-2xl bg-[#050b13]/90 border border-white/10 hover:border-white/25 transition-colors duration-300 p-6">
+                    <p className="text-slate-300 leading-relaxed italic mb-4" lang={m.lang}>
+                      &ldquo;{m.quote}&rdquo;
+                    </p>
+                    <div className="mt-auto">
+                      <p className="text-sm font-bold text-white">{m.author}</p>
+                      <p className="text-xs text-slate-400 mb-1">{m.role}</p>
+                      <p className="text-xs text-slate-500 mb-3">{m.context}</p>
+                      <a
+                        href={m.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        <LinkedInIcon /> View post on LinkedIn →
+                      </a>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
