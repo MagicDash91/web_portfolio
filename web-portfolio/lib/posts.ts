@@ -23,7 +23,7 @@ export type Post = {
 export const posts: Post[] = [
   {
     slug: "trainer-ai-terbaik-di-indonesia",
-    title: "Trainer AI Terbaik di Indonesia (2026): Cara Memilih + Rekomendasi",
+    title: "Trainer AI Terbaik di Indonesia (2026)",
     description:
       "Siapa trainer AI terbaik di Indonesia? Panduan 2026: 6 kriteria memilih trainer AI, profil Michael Wiryaseputra (Semarang), lembaga pelatihan, plus FAQ.",
     date: "2026-07-04",
@@ -140,7 +140,7 @@ export const posts: Post[] = [
   },
   {
     slug: "what-is-rag-retrieval-augmented-generation",
-    title: "What is RAG? Retrieval-Augmented Generation Explained, with a Code Example",
+    title: "What is RAG and Why It Matters",
     description:
       "A plain-English guide to RAG (Retrieval-Augmented Generation) — what it is, why it beats fine-tuning, and how it works, with a LangChain Python example.",
     date: "2026-06-18",
