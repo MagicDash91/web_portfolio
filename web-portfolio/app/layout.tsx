@@ -121,6 +121,13 @@ const jsonLd = {
     { "@type": "Organization", name: "DIBIMBING.ID" },
     { "@type": "Organization", name: "DSAREA" },
   ],
+  memberOf: {
+    "@type": "Organization",
+    name: "Semarang.py",
+    url: "https://semarangpy.vercel.app",
+    description:
+      "Python developer community in Semarang, Indonesia, co-founded by Michael Wiryaseputra",
+  },
   sameAs: [
     "https://www.linkedin.com/in/michael-wiryaseputra/",
     "https://github.com/MagicDash91",
