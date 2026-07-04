@@ -141,9 +141,18 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     inLanguage: ["en", "id"],
     keywords: post.tags.join(", "),
     image: `${SITE_URL}/ax.jpg`,
-    author: { "@type": "Person", name: "Michael Wiryaseputra", url: SITE_URL },
-    publisher: { "@type": "Person", name: "Michael Wiryaseputra", url: SITE_URL },
+    author: { "@id": `${SITE_URL}/#person` },
+    publisher: { "@id": `${SITE_URL}/#person` },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  }
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
   }
 
   return (
@@ -151,6 +160,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <Link href="/blog" className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
         ← Back to blog
@@ -167,7 +180,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           </div>
           <h1 className="text-3xl md:text-4xl font-black leading-tight mb-3">{post.title}</h1>
           <div className="text-sm text-slate-500">
-            By Michael Wiryaseputra · {formatDate(post.date)} · {post.readingTime}
+            By{" "}
+            <Link href="/" className="text-slate-300 hover:text-white transition-colors font-medium">
+              Michael Wiryaseputra
+            </Link>
+            , AI/ML Engineer &amp; Bootcamp Trainer · {formatDate(post.date)} · {post.readingTime}
           </div>
         </header>
 
