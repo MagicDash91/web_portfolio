@@ -117,7 +117,7 @@ const jsonLd = {
     },
   },
   worksFor: [
-    { "@type": "Organization", name: "INTELLIGO.ID" },
+    { "@type": "Organization", name: "INTELLIGO.ID", url: "https://www.intelligo.id/" },
     { "@type": "Organization", name: "DIBIMBING.ID" },
     { "@type": "Organization", name: "DSAREA" },
   ],
@@ -143,6 +143,7 @@ const jsonLd = {
     "https://www.quora.com/profile/Michael-Wiryaseputra",
     "https://www.superprof.co.id/engineer-bootcamp-trainer-building-llm-rag-systems-with-langchain-langgraph-fastapi-yrs-corporate.html",
     "https://huggingface.co/MagicDash",
+    "https://dblp.org/pid/362/0284.html",
     "https://www.researchgate.net/profile/Michael-Wiryaseputra",
   ],
   knowsAbout: [

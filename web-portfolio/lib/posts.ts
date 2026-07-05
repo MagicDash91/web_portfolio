@@ -22,6 +22,77 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "pelatihan-agentic-ai-bank-jateng",
+    title: "Pelatihan Agentic AI untuk Bank Jateng",
+    description:
+      "Studi kasus pelatihan Agentic AI untuk Bank Jateng: Machine Learning, RAG, fine-tuning LLM, dan LLMOps dengan LangSmith — pengalaman melatih tim perbankan.",
+    date: "2026-07-05",
+    readingTime: "7 min read",
+    tags: [
+      "Corporate AI Training",
+      "Pelatihan AI",
+      "Agentic AI",
+      "RAG",
+      "LLMOps",
+      "Bank Jateng",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Pada September 2025, saya mendapat kesempatan melatih tim Bank Jateng (Bank Pembangunan Daerah Jawa Tengah) membangun sistem Agentic AI — bersama rekan trainer Bayuzen Ahmad. Artikel ini adalah studi kasus dari sisi kurikulum dan pendekatan: apa yang kami ajarkan, kenapa materinya disusun seperti itu, dan pelajaran apa yang bisa diambil perusahaan lain yang ingin melatih timnya di bidang AI. Catatan: sesuai etika pelatihan korporat, tidak ada data internal, use case spesifik, maupun materi rahasia bank yang dibahas di sini.",
+      },
+      {
+        type: "image",
+        src: "/blog/michael-wiryaseputra-pelatihan-agentic-ai-bank-jateng.jpg",
+        alt: "Michael Wiryaseputra memberikan pelatihan Agentic AI di depan peserta dari Bank Jateng, September 2025",
+        caption:
+          "Sesi pelatihan Agentic AI untuk tim Bank Jateng, September 2025 — materi machine learning, RAG, fine-tuning LLM, dan LLMOps.",
+      },
+      { type: "h2", text: "Konteks: kenapa bank melatih timnya membangun Agentic AI" },
+      {
+        type: "p",
+        text: "Perbankan adalah salah satu industri yang paling berhati-hati mengadopsi AI — dan justru karena itu pelatihannya harus lebih dalam dari sekadar \"cara pakai ChatGPT\". Tim teknologi bank perlu memahami cara kerja sistem AI dari dalam: bagaimana model dilatih, bagaimana data internal bisa dihubungkan ke LLM secara aman, dan bagaimana semuanya dipantau setelah berjalan. Karena itu pelatihan ini dirancang hands-on penuh: peserta membangun sendiri setiap komponennya, bukan menonton demo.",
+      },
+      { type: "h2", text: "Apa yang saya ajarkan" },
+      {
+        type: "p",
+        text: "Pelatihan dibagi dua trek dengan Bayuzen Ahmad; porsi saya mencakup lima blok materi berikut:",
+      },
+      {
+        type: "ul",
+        items: [
+          "Machine Learning fundamentals — supervised learning, evaluasi model, dan kapan ML klasik lebih tepat daripada LLM. Fondasi ini penting supaya tim tidak memakai LLM untuk masalah yang sebenarnya cukup diselesaikan model sederhana.",
+          "Google Colab sebagai lingkungan praktik — dipilih supaya semua peserta langsung bisa praktik tanpa instalasi apa pun di laptop kantor; penting di lingkungan korporat yang laptopnya dikunci IT.",
+          "Retrieval-Augmented Generation (RAG) — membangun pipeline dari dokumen ke jawaban: chunking, embedding, vector store, dan retrieval, supaya LLM menjawab berdasarkan dokumen institusi, bukan mengarang.",
+          "Fine-tuning LLM — kapan fine-tuning diperlukan (dan kapan tidak), plus praktik langsung melatih model pada data berlabel untuk kebutuhan yang lebih spesifik dari yang bisa dijangkau RAG.",
+          "LLMOps dengan LangSmith — tracing, monitoring, dan evaluasi aplikasi LLM. Di industri seperti perbankan, kemampuan mengaudit \"kenapa AI menjawab seperti ini\" bukan fitur opsional — ini syarat kelayakan produksi.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Trek agentic AI dalam pelatihan ini dibangun di atas stack LangChain dan LangGraph dengan model Gemini dan OpenAI — mencakup koordinasi multi-agent, tool execution, dan memory — sehingga di akhir program peserta melihat gambaran utuh: dari model, ke pipeline data, ke agent yang bisa mengeksekusi tugas, sampai monitoring produksinya.",
+      },
+      { type: "h2", text: "Tiga pelajaran untuk perusahaan yang ingin melatih timnya" },
+      {
+        type: "ul",
+        items: [
+          "Mulai dari fondasi, bukan dari tool yang sedang tren. Peserta yang paham cara kerja embedding dan retrieval bisa beradaptasi ke framework apa pun; peserta yang hanya hafal satu tool akan tersesat begitu tool-nya berganti versi.",
+          "Hands-on mengalahkan slide. Materi yang sama, jika dipraktikkan langsung di Colab, melekat jauh lebih lama — dan menghasilkan pertanyaan yang jauh lebih tajam dari peserta.",
+          "Observability harus diajarkan sejak hari pertama, bukan sebagai materi lanjutan. Tim yang terbiasa membaca trace di LangSmith sejak awal akan membangun aplikasi LLM yang bisa dipertanggungjawabkan — krusial untuk industri teregulasi.",
+        ],
+      },
+      { type: "h2", text: "English summary" },
+      {
+        type: "p",
+        text: "In September 2025, I delivered corporate Agentic AI training for Bank Jateng (the regional development bank of Central Java, Indonesia), co-teaching with Bayuzen Ahmad. My track covered machine learning fundamentals, hands-on practice in Google Colab, Retrieval-Augmented Generation, LLM fine-tuning, and LLMOps with LangSmith; the agentic track was built on LangChain and LangGraph with Gemini and OpenAI models, covering multi-agent coordination, tool execution, and memory. Key lessons for companies training their teams: start from fundamentals rather than trending tools, make every session hands-on, and teach observability from day one — in regulated industries like banking, being able to audit why an AI answered the way it did is a production requirement, not a nice-to-have. No internal bank data or confidential use cases are discussed in this article.",
+      },
+      {
+        type: "cta",
+        text: "Ingin pelatihan AI serupa untuk perusahaan Anda — Generative AI, Agentic AI, RAG, atau LLMOps — dalam bahasa Indonesia atau Inggris, online maupun on-site? Hubungi saya lewat halaman utama situs ini atau LinkedIn (linkedin.com/in/michael-wiryaseputra).",
+      },
+    ],
+  },
+  {
     slug: "trainer-ai-terbaik-di-indonesia",
     title: "Trainer AI Terbaik di Indonesia (2026)",
     description:

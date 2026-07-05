@@ -222,7 +222,15 @@ function LinkedInIcon() {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
-const experiences = [
+const experiences: {
+  title: string
+  company: string
+  date: string
+  desc: string
+  color: string
+  tags: string[]
+  link?: string
+}[] = [
   {
     title: "AI/ML Bootcamp Tutor",
     company: "INTELLIGO.ID",
@@ -230,6 +238,7 @@ const experiences = [
     desc: "Teaching and mentoring students across private, semi-private, and full-class bootcamps in AI/ML topics including Machine Learning, NLP, LLMs, RAG frameworks, and LLMOps practices.",
     color: "from-blue-500 to-purple-600",
     tags: ["ML", "NLP", "LLMs", "RAG", "LLMOps"],
+    link: "https://www.intelligo.id/",
   },
   {
     title: "Data Science & AI/ML Engineer Bootcamp Tutor",
@@ -246,6 +255,7 @@ const experiences = [
     desc: "Delivering full-class instruction in Machine Learning, NLP, LLMs, Retrieval-Augmented Generation (RAG), and advanced RAG frameworks such as Agentic RAG, Hybrid RAG, and Adaptive RAG. Also teaching LLMOps and hands-on LLM fine-tuning.",
     color: "from-purple-500 to-pink-600",
     tags: ["Agentic RAG", "Hybrid RAG", "LLM Fine-tuning"],
+    link: "https://www.instagram.com/p/DQWUpkGEk_F/",
   },
   {
     title: "AI/ML Engineer & Data Engineer Bootcamp Tutor",
@@ -254,6 +264,7 @@ const experiences = [
     desc: "Delivered comprehensive instruction covering Machine Learning, NLP, LLMs, advanced RAG architectures, LLMOps best practices, and practical LLM fine-tuning techniques.",
     color: "from-green-500 to-teal-600",
     tags: ["LLMs", "RAG Architectures", "LLMOps"],
+    link: "https://www.instagram.com/p/DNAmsjmxSC8/",
   },
   {
     title: "Agentic LLM Trainer",
@@ -378,7 +389,13 @@ function ExperienceCard({ exp }: { exp: (typeof experiences)[number] }) {
             variants={cardItem}
             className={`text-sm font-bold bg-gradient-to-r ${exp.color} bg-clip-text text-transparent mb-3`}
           >
-            {exp.company}
+            {exp.link ? (
+              <a href={exp.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {exp.company}
+              </a>
+            ) : (
+              exp.company
+            )}
           </motion.p>
           <motion.p variants={cardItem} className="text-sm text-slate-400 leading-relaxed mb-4">
             {exp.desc}
@@ -491,7 +508,7 @@ const projects = [
   {
     title: "YouTube Sentiment Analysis",
     desc: "Analyzes sentiment of YouTube comments using a pre-trained BERT model and generates word clouds and insights via the Google Gemini API.",
-    image: "/youtube.jpg",
+    image: "/comment-sentiment.jpg",
     tags: ["LangChain", "FastAPI", "Wordcloud"],
     category: "NLP",
     gradient: "from-purple-400 to-pink-500",
@@ -555,7 +572,8 @@ const speakingEvents: {
     date: "22 April 2026",
     topics: ["Supervised Learning", "Model Training & Selection", "Evaluation Metrics"],
     color: "from-red-500 to-orange-500",
-    announcement: "https://www.instagram.com/p/DXUHzyZE9iD/",
+    announcement:
+      "https://gdg.community.dev/events/details/google-gdg-on-campus-universitas-negeri-surabaya-surabaya-indonesia-presents-teaching-the-machine-building-and-evaluating-your-first-ai-model/",
   },
   {
     poster: "/poster3.jpeg",
