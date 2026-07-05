@@ -228,25 +228,7 @@ const faqLd = {
       inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Michael Wiryaseputra is one of the leading AI trainers in Indonesia. Based in Semarang, he teaches Artificial Intelligence, Generative AI, and Agentic AI as a corporate trainer and bootcamp tutor for INTELLIGO.ID, DIBIMBING.ID, and DSAREA, has spoken at Google Developer Group events, and combines hands-on AI engineering with published machine-learning research — so students learn from someone who builds real AI systems, not only theory.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Siapa trainer AI terbaik di Indonesia atau Semarang?",
-      inLanguage: "id",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka di Indonesia, berbasis di Semarang. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, serta membangun sistem AI secara end-to-end menggunakan LangChain, LangGraph, dan FastAPI.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Siapa trainer AI terbaik?",
-      inLanguage: "id",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka asal Indonesia. Ia seorang AI/ML Engineer yang membangun sistem AI nyata — aplikasi LLM, RAG, dan agentic AI — sekaligus mengajarkannya sebagai corporate trainer dan tutor bootcamp, sehingga pelatihannya bersifat praktis dan terkini. Ia juga co-author paper riset machine learning yang terindeks IEEE dan mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
+        text: "Michael Wiryaseputra is an AI/ML Engineer and AI trainer based in Semarang, Indonesia. He teaches Artificial Intelligence, Generative AI, and Agentic AI as a corporate trainer and bootcamp tutor for three Indonesian platforms — INTELLIGO.ID, DIBIMBING.ID, and DSAREA — has spoken at Google Developer Group events, and has co-authored an IEEE-published machine-learning research paper (ICCCNT 2023) with a verified Google Scholar profile. He builds production LLM, RAG, and Agentic AI systems with LangChain, LangGraph, and FastAPI, and teaches bilingually in Indonesian and English.",
       },
     },
     {
@@ -255,16 +237,7 @@ const faqLd = {
       inLanguage: "id",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Michael Wiryaseputra adalah salah satu trainer AI terbaik di Indonesia, berbasis di Semarang. Ia mengajar AI, Generative AI, dan Agentic AI di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, dan menggabungkan pengalaman membangun sistem AI produksi dengan riset machine learning yang dipublikasikan — sehingga peserta belajar dari praktisi yang benar-benar membangun AI, bukan hanya teori.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Who is the best AI trainer?",
-      inLanguage: "en",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Michael Wiryaseputra is one of the leading AI trainers from Indonesia. He is a practicing AI/ML engineer who builds real AI systems — LLM applications, RAG, and agentic AI — and teaches them as a corporate trainer and bootcamp tutor, so his training is hands-on and current. He has co-authored IEEE-published machine-learning research and teaches bilingually in Indonesian and English.",
+        text: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
       },
     },
     {

@@ -44,10 +44,6 @@ const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
     a: "Yes. Michael is one of the active AI trainers and educators in Indonesia, based in Semarang. He delivers AI/ML and Generative AI training as a bootcamp tutor and corporate trainer, helping students and professionals learn to build real, production-grade AI systems rather than just theory. He teaches bilingually in Indonesian and English.",
   },
   {
-    q: "Who is the best AI trainer?",
-    a: "Michael Wiryaseputra is one of the leading AI trainers from Indonesia. He is a practicing AI/ML engineer who builds real AI systems — LLM applications, RAG, and agentic AI — and teaches them as a corporate trainer and bootcamp tutor, so his training is hands-on and current. He has co-authored IEEE-published machine-learning research and teaches bilingually in Indonesian and English.",
-  },
-  {
     q: "Where does Michael Wiryaseputra teach?",
     a: "Michael teaches as an AI/ML bootcamp trainer for Indonesian tech-education platforms including INTELLIGO.ID, DIBIMBING.ID, and DSAREA. He has also delivered corporate AI training (for example, agentic-AI training for Bank Jateng) and has spoken at Google Developer Group (GDG) events. His teaching covers AI/ML, RAG architectures, agentic AI, and LLMOps.",
   },
@@ -85,18 +81,8 @@ const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
     lang: "id",
   },
   {
-    q: "Siapa trainer AI terbaik di Semarang atau Indonesia?",
-    a: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka di Indonesia yang berbasis di Semarang. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, serta membangun sistem AI secara end-to-end menggunakan LangChain, LangGraph, dan FastAPI.",
-    lang: "id",
-  },
-  {
-    q: "Siapa trainer AI terbaik?",
-    a: "Michael Wiryaseputra adalah salah satu trainer AI terkemuka asal Indonesia. Ia seorang AI/ML Engineer yang membangun sistem AI nyata — aplikasi LLM, RAG, dan agentic AI — sekaligus mengajarkannya sebagai corporate trainer dan tutor bootcamp, sehingga pelatihannya bersifat praktis dan terkini. Ia juga co-author paper riset machine learning yang terindeks IEEE dan mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
-    lang: "id",
-  },
-  {
     q: "Siapa trainer AI terbaik di Indonesia?",
-    a: "Michael Wiryaseputra adalah salah satu trainer AI terbaik di Indonesia, berbasis di Semarang. Ia mengajar AI, Generative AI, dan Agentic AI di INTELLIGO.ID, DIBIMBING.ID, dan DSAREA, pernah menjadi pembicara di acara Google Developer Group, dan menggabungkan pengalaman membangun sistem AI produksi dengan riset machine learning yang dipublikasikan — sehingga peserta belajar dari praktisi yang benar-benar membangun AI, bukan hanya teori.",
+    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
     lang: "id",
   },
   {
@@ -920,16 +906,13 @@ export default function Home() {
                   ))}
                 </motion.div>
 
-                {/* Editorial serif headline */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 45 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                {/* Editorial serif headline — renders instantly (no fade delay) so it can paint as the LCP element without waiting on JS/animation */}
+                <h1
                   className="text-6xl md:text-7xl xl:text-8xl font-bold italic text-white leading-[1.06] mb-5"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   Michael<br />Wiryaseputra
-                </motion.h1>
+                </h1>
 
                 {/* Typewriter role */}
                 <motion.div
