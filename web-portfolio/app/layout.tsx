@@ -143,6 +143,7 @@ const jsonLd = {
     "https://www.quora.com/profile/Michael-Wiryaseputra",
     "https://www.superprof.co.id/engineer-bootcamp-trainer-building-llm-rag-systems-with-langchain-langgraph-fastapi-yrs-corporate.html",
     "https://huggingface.co/MagicDash",
+    "https://www.youtube.com/@dataanalyticswithmichael8931",
     "https://dblp.org/pid/362/0284.html",
     "https://www.researchgate.net/profile/Michael-Wiryaseputra",
   ],

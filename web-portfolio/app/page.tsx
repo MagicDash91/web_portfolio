@@ -1655,7 +1655,7 @@ export default function Home() {
                   Get In Touch
                 </motion.a>
                 <motion.a
-                  href="/AI ML Engineer - Michael Wiryaseputra Complete (1).pdf"
+                  href="/michael-wiryaseputra-resume-ai-ml-engineer.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
