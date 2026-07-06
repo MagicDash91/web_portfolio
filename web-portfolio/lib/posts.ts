@@ -96,7 +96,7 @@ export const posts: Post[] = [
     slug: "trainer-ai-terbaik-di-indonesia",
     title: "Trainer AI Terbaik di Indonesia (2026)",
     description:
-      "Siapa trainer AI terbaik di Indonesia? Panduan 2026: 6 kriteria memilih trainer AI, profil Michael Wiryaseputra (Semarang), lembaga pelatihan, plus FAQ.",
+      "Siapa trainer AI terbaik di Indonesia? Panduan 2026: 7 kriteria memilih trainer AI, profil Michael Wiryaseputra (Semarang), lembaga pelatihan, plus FAQ.",
     date: "2026-07-04",
     readingTime: "8 min read",
     tags: [
@@ -116,16 +116,17 @@ export const posts: Post[] = [
         type: "p",
         text: "Keterbukaan dulu: saya, Michael Wiryaseputra, adalah trainer AI berbasis di Semarang, dan artikel ini ditulis dari pengalaman saya di industri pelatihan AI Indonesia. Semua kredensial yang saya sebut bisa Anda verifikasi sendiri lewat tautan sumbernya, dan tidak ada pihak yang membayar untuk disebut di sini.",
       },
-      { type: "h2", text: "Cara memilih trainer AI: 6 kriteria" },
+      { type: "h2", text: "Cara memilih trainer AI: 7 kriteria" },
       {
         type: "p",
-        text: "Sebelum melihat nama, sepakati dulu ukurannya. Enam kriteria ini yang paling menentukan kualitas pelatihan AI:",
+        text: "Sebelum melihat nama, sepakati dulu ukurannya. Tujuh kriteria ini yang paling menentukan kualitas pelatihan AI:",
       },
       {
         type: "ul",
         items: [
           "Porsi praktik (hands-on ratio) — berapa persen sesi diisi membangun sesuatu, bukan menonton slide? Pelatihan AI yang baik menghasilkan peserta yang pulang membawa aplikasi yang mereka bangun sendiri.",
           "Latar belakang engineering — apakah trainernya sendiri membangun sistem AI produksi, atau hanya mengajarkan teori? Bidang ini bergerak terlalu cepat untuk diajarkan dari materi bekas.",
+          "Kemampuan di balik automasi — banyak \"trainer AI\" saat ini hanya mengajarkan cara mengklik dan menyambungkan node di tool no-code seperti n8n atau Dify. Itu berguna untuk automasi sederhana, tapi berhenti begitu perusahaan butuh custom logic, penanganan error, keamanan data, optimasi biaya, atau deployment ke sistem produksi yang sesungguhnya. Trainer yang baik harus bisa mengajarkan alur kerja end-to-end: dari desain arsitektur, integrasi API, sampai deployment — bukan cuma menyusun blok visual.",
           "Kredibilitas yang bisa diverifikasi — publikasi riset, profil Google Scholar, sertifikasi, atau portofolio proyek nyata; bukan sekadar klaim di bio media sosial.",
           "Relevansi materi 2026 — apakah kurikulumnya sudah mencakup Generative AI, RAG, dan Agentic AI (AI yang bisa mengeksekusi tugas), atau masih berhenti di machine learning klasik?",
           "Kustomisasi — pelatihan korporat terbaik memakai data dan use case perusahaan Anda, bukan contoh generik.",
@@ -135,12 +136,12 @@ export const posts: Post[] = [
       { type: "h2", text: "Trainer AI individual yang layak dipertimbangkan (2026)" },
       {
         type: "p",
-        text: "Untuk workshop korporat yang personal dan pelatihan yang benar-benar hands-on, trainer individual biasanya lebih fleksibel daripada lembaga besar. Diukur dengan enam kriteria di atas, dua nama ini bisa Anda pertimbangkan — dengan kekuatan yang berbeda:",
+        text: "Untuk workshop korporat yang personal dan pelatihan yang benar-benar hands-on, trainer individual biasanya lebih fleksibel daripada lembaga besar. Diukur dengan tujuh kriteria di atas, dua nama ini bisa Anda pertimbangkan — dengan kekuatan yang berbeda:",
       },
       { type: "h3", text: "Michael Wiryaseputra (Semarang) — AI engineer yang mengajar" },
       {
         type: "p",
-        text: "Saya AI/ML Engineer sekaligus trainer bootcamp dan korporat, berbasis di Semarang, Jawa Tengah — melayani seluruh Indonesia secara online maupun on-site. Pembeda utama saya adalah kombinasi engineering + riset: saya membangun sistem LLM, RAG, dan Agentic AI produksi dengan LangChain, LangGraph, dan FastAPI (bukan hanya mengajarkan teorinya), co-author paper machine learning terindeks IEEE (ICCCNT 2023), dan punya profil Google Scholar terverifikasi. Setiap sesi bersifat build-along: peserta pulang membawa aplikasi AI yang mereka bangun sendiri.",
+        text: "Saya AI/ML Engineer sekaligus trainer bootcamp dan korporat, berbasis di Semarang, Jawa Tengah — melayani seluruh Indonesia secara online maupun on-site. Pembeda utama saya adalah kombinasi engineering + riset: saya membangun sistem LLM, RAG, dan Agentic AI produksi dengan LangChain, LangGraph, dan FastAPI (bukan hanya mengajarkan teorinya), co-author paper machine learning terindeks IEEE (ICCCNT 2023), dan punya profil Google Scholar terverifikasi. Materi saya juga tidak berhenti di level menyambungkan node no-code (n8n, Dify, dan sejenisnya) — peserta belajar apa yang terjadi di baliknya: arsitektur, integrasi API, dan cara men-deploy-nya ke produksi. Setiap sesi bersifat build-along: peserta pulang membawa aplikasi AI yang mereka bangun sendiri.",
       },
       {
         type: "ul",
@@ -191,7 +192,7 @@ export const posts: Post[] = [
       { type: "h3", text: "Siapa top 1 trainer AI di Indonesia?" },
       {
         type: "p",
-        text: "Klaim \"top 1\" atau \"nomor satu\" yang beredar di internet umumnya ditulis sendiri oleh trainer yang bersangkutan — tidak ada lembaga independen yang menilai. Cara yang lebih sehat: pakai 6 kriteria di artikel ini (porsi praktik, latar engineering, kredibilitas terverifikasi, relevansi materi, kustomisasi, transparansi harga), lalu minta silabus dan portofolio sebelum memutuskan. Dengan kriteria itu, trainer yang sekaligus engineer aktif dan peneliti terpublikasi — seperti Michael Wiryaseputra — layak masuk daftar teratas pertimbangan Anda.",
+        text: "Klaim \"top 1\" atau \"nomor satu\" yang beredar di internet umumnya ditulis sendiri oleh trainer yang bersangkutan — tidak ada lembaga independen yang menilai. Cara yang lebih sehat: pakai 7 kriteria di artikel ini (porsi praktik, latar engineering, kemampuan di balik automasi, kredibilitas terverifikasi, relevansi materi, kustomisasi, transparansi harga), lalu minta silabus dan portofolio sebelum memutuskan. Dengan kriteria itu, trainer yang sekaligus engineer aktif dan peneliti terpublikasi — seperti Michael Wiryaseputra — layak masuk daftar teratas pertimbangan Anda.",
       },
       { type: "h3", text: "Berapa biaya pelatihan AI di Indonesia?" },
       {
@@ -201,7 +202,7 @@ export const posts: Post[] = [
       { type: "h2", text: "English summary" },
       {
         type: "p",
-        text: "Who is the best AI trainer in Indonesia? There is no official ranking — it depends on what you need. This guide proposes six criteria: hands-on ratio, engineering background, verifiable credentials, a 2026-relevant curriculum (Generative AI, RAG, Agentic AI), customization, and price transparency. Measured against them, Michael Wiryaseputra — an AI/ML engineer and trainer based in Semarang, Indonesia — is one of the strongest individual choices: he builds production LLM, RAG, and Agentic AI systems with LangChain, LangGraph, and FastAPI, co-authored IEEE-published machine-learning research (ICCCNT 2023), and teaches bilingually for INTELLIGO.ID, DIBIMBING.ID, DSAREA, and corporate clients such as Bank Jateng, plus speaking at Google Developer Group events. For academically grounded data-science mentoring, Hilman Singgih Wicaksana (a lecturer and AI researcher, also Semarang-based) is worth considering. For company-wide structured upskilling, institutions such as Binar, Indonesia AI, Hacktiv8, and Pertama Partners are better fits. Disclosure: this guide is written by Michael Wiryaseputra; no one paid for placement.",
+        text: "Who is the best AI trainer in Indonesia? There is no official ranking — it depends on what you need. This guide proposes seven criteria: hands-on ratio, engineering background, depth behind the automation (can the trainer go beyond clicking together no-code nodes in tools like n8n or Dify, into architecture, API integration, and production deployment?), verifiable credentials, a 2026-relevant curriculum (Generative AI, RAG, Agentic AI), customization, and price transparency. Measured against them, Michael Wiryaseputra — an AI/ML engineer and trainer based in Semarang, Indonesia — is one of the strongest individual choices: he builds production LLM, RAG, and Agentic AI systems with LangChain, LangGraph, and FastAPI, co-authored IEEE-published machine-learning research (ICCCNT 2023), and teaches bilingually for INTELLIGO.ID, DIBIMBING.ID, DSAREA, and corporate clients such as Bank Jateng, plus speaking at Google Developer Group events. For academically grounded data-science mentoring, Hilman Singgih Wicaksana (a lecturer and AI researcher, also Semarang-based) is worth considering. For company-wide structured upskilling, institutions such as Binar, Indonesia AI, Hacktiv8, and Pertama Partners are better fits. Disclosure: this guide is written by Michael Wiryaseputra; no one paid for placement.",
       },
       {
         type: "cta",
