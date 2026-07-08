@@ -644,6 +644,22 @@ const MENTIONS: {
     context: "Prompt engineering seminar takeaways",
     href: "https://www.linkedin.com/posts/anafarida1_promptengineering-ai-artificialintelligence-ugcPost-7433457635154178048-CssS/",
   },
+  {
+    quote:
+      "Anak muda punya potensi presentasi yang terintegrasi dengan sistem DCS - AI Analytic",
+    author: "Muchlis Rustam",
+    role: "LINKID Community",
+    context: "1-to-1 meeting — AI analytics for DCS in oil & gas",
+    href: "https://www.linkedin.com/posts/muchlis-rustam-699992b_linkid-members-short-meeting-1-to-1-ugcPost-7468881309545693184-8TEb/",
+    lang: "id",
+  },
+  {
+    quote: "Michael Wiryaseputra (Basic SQL) and Akmal Fauzan (Basic Excel)",
+    author: "Komunitas Excel Indonesia",
+    role: "Indonesian professional community — official account",
+    context: "Free mini bootcamp announcement — Basic Excel & SQL",
+    href: "https://www.linkedin.com/posts/komunitas-excel-indonesia_excelindonesia-belajarsql-bootcampgratis-activity-7426436757774032896-UZDi/",
+  },
 ]
 
 type TechItem =
