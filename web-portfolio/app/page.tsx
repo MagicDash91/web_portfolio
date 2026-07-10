@@ -1698,7 +1698,16 @@ export default function Home() {
                 MW.
               </div>
               <p className="text-slate-400 text-sm leading-relaxed">
-                
+                AI/ML Engineer &amp; Bootcamp Trainer di Semarang, Indonesia. Lihat juga{" "}
+                <a
+                  href="https://aitrainerindonesia.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-300 hover:text-white underline transition-colors"
+                >
+                  panduan &amp; perbandingan trainer AI di Indonesia
+                </a>
+                .
               </p>
             </div>
             <div>
