@@ -1700,7 +1700,7 @@ export default function Home() {
               <p className="text-slate-400 text-sm leading-relaxed">
                 AI/ML Engineer &amp; Bootcamp Trainer di Semarang, Indonesia. Lihat juga{" "}
                 <a
-                  href="https://aitrainerindonesia.com"
+                  href="https://aitrainerindonesia.id"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-white underline transition-colors"
