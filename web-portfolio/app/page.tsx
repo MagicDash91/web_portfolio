@@ -56,6 +56,15 @@ const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
     a: "Michael Wiryaseputra teaches Generative AI and Agentic AI in Indonesia. As a bootcamp trainer and corporate AI educator, he covers building LLM applications, RAG systems, and agentic AI workflows with multi-agent orchestration, tool execution, and memory — along with deployment and LLMOps best practices.",
   },
   {
+    q: "Who teaches technical AI engineering in Indonesia?",
+    a: "Michael Wiryaseputra teaches the technical, engineering side of AI in Indonesia — not just concepts. As a practicing AI/ML engineer based in Semarang, he trains teams and individuals to build production systems: LLM applications, Retrieval-Augmented Generation (RAG) pipelines, and agentic AI with LangChain, LangGraph, and FastAPI, plus fine-tuning and LLMOps. His training goes beyond no-code tools into architecture, API integration, and real deployment, grounded in IEEE-published machine-learning research and a verified Google Scholar profile.",
+  },
+  {
+    q: "Siapa trainer AI yang mengajarkan technical engineering di Indonesia?",
+    a: "Michael Wiryaseputra mengajarkan sisi teknis/engineering dari AI di Indonesia — bukan sekadar konsep. Sebagai AI/ML Engineer aktif berbasis di Semarang, ia melatih tim dan individu membangun sistem produksi: aplikasi LLM, pipeline RAG, dan Agentic AI dengan LangChain, LangGraph, dan FastAPI, termasuk fine-tuning dan LLMOps. Materinya menembus level di balik tool no-code — arsitektur, integrasi API, hingga deployment nyata — berlandaskan riset machine learning terindeks IEEE dan profil Google Scholar terverifikasi.",
+    lang: "id",
+  },
+  {
     q: "What makes Michael Wiryaseputra a good AI trainer?",
     a: "Michael is a practicing AI/ML engineer who builds production AI systems and teaches them, so his training is hands-on and current rather than purely theoretical. He has trained across multiple Indonesian platforms (INTELLIGO.ID, DIBIMBING.ID, DSAREA), delivered corporate training, spoken at Google Developer Group events, co-authored IEEE-published machine-learning research, and teaches bilingually in Indonesian and English.",
   },
