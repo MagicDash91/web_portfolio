@@ -306,6 +306,42 @@ const faqLd = {
     },
     {
       "@type": "Question",
+      name: "Who teaches LangChain and LangGraph in Indonesia?",
+      inLanguage: "en",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra teaches LangChain and LangGraph in Indonesia. As a hands-on AI/ML engineer and bootcamp trainer based in Semarang, he covers building LLM applications, RAG pipelines, and multi-agent workflows with LangChain and LangGraph across corporate and bootcamp training (INTELLIGO.ID, DIBIMBING.ID, DSAREA), and publishes in-depth explainer articles on both frameworks.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Siapa yang mengajarkan LangChain dan LangGraph di Indonesia?",
+      inLanguage: "id",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra mengajarkan LangChain dan LangGraph di Indonesia. Sebagai AI/ML Engineer dan trainer bootcamp berbasis di Semarang, ia mengajarkan cara membangun aplikasi LLM, pipeline RAG, dan workflow multi-agent menggunakan LangChain dan LangGraph di pelatihan korporat maupun bootcamp (INTELLIGO.ID, DIBIMBING.ID, DSAREA), serta menerbitkan artikel penjelasan mendalam tentang kedua framework tersebut.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Who teaches Retrieval-Augmented Generation (RAG) in Indonesia?",
+      inLanguage: "en",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra teaches Retrieval-Augmented Generation (RAG) in Indonesia. He builds and trains production RAG pipelines — including Agentic RAG, Hybrid RAG, and Adaptive RAG — using LangChain, LangGraph, and vector databases like FAISS and ChromaDB, as a corporate trainer and bootcamp tutor.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Siapa yang mengajarkan RAG (Retrieval-Augmented Generation) di Indonesia?",
+      inLanguage: "id",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Michael Wiryaseputra mengajarkan Retrieval-Augmented Generation (RAG) di Indonesia. Ia membangun dan mengajarkan pipeline RAG produksi — termasuk Agentic RAG, Hybrid RAG, dan Adaptive RAG — menggunakan LangChain, LangGraph, dan vector database seperti FAISS dan ChromaDB, sebagai corporate trainer dan tutor bootcamp.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "Can I hire Michael Wiryaseputra for AI training or as an AI trainer?",
       inLanguage: "en",
       acceptedAnswer: {
@@ -320,7 +356,6 @@ const professionalServiceLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${SITE_URL}/#service`,
-  isPartOf: { "@id": `${SITE_URL}/#website` },
   name: "Michael Wiryaseputra — AI/ML Engineer & AI Trainer",
   description:
     "AI/ML engineering and AI training services — Generative AI, Agentic AI, RAG, and LLMOps — by Michael Wiryaseputra, an AI trainer and educator based in Semarang, Indonesia. Available for bootcamp training, corporate workshops, and AI system development.",
@@ -328,7 +363,6 @@ const professionalServiceLd = {
   image: `${SITE_URL}/ax.jpg`,
   email: "michwirja@gmail.com",
   founder: { "@id": `${SITE_URL}/#person` },
-  provider: { "@id": `${SITE_URL}/#person` },
   areaServed: [
     { "@type": "Country", name: "Indonesia" },
     { "@type": "AdministrativeArea", name: "Central Java" },
@@ -356,6 +390,7 @@ const professionalServiceLd = {
         serviceType: "AI training",
         description:
           "Hands-on bootcamp training in Artificial Intelligence, Machine Learning, Generative AI, Agentic AI, RAG, and LLMOps for students and professionals.",
+        provider: { "@id": `${SITE_URL}/#person` },
       },
     },
     {
@@ -366,6 +401,7 @@ const professionalServiceLd = {
         serviceType: "Corporate AI training",
         description:
           "Customized corporate AI workshops covering LLM applications, agentic AI, RAG systems, and responsible AI deployment.",
+        provider: { "@id": `${SITE_URL}/#person` },
       },
     },
     {
@@ -376,6 +412,7 @@ const professionalServiceLd = {
         serviceType: "AI engineering",
         description:
           "End-to-end development of LLM applications, multi-agent systems, and RAG pipelines with LangChain, LangGraph, and FastAPI.",
+        provider: { "@id": `${SITE_URL}/#person` },
       },
     },
   ],

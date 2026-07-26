@@ -95,6 +95,24 @@ const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
     lang: "id",
   },
   {
+    q: "Who teaches LangChain and LangGraph in Indonesia?",
+    a: "Michael Wiryaseputra teaches LangChain and LangGraph in Indonesia. As a hands-on AI/ML engineer and bootcamp trainer based in Semarang, he covers building LLM applications, RAG pipelines, and multi-agent workflows with LangChain and LangGraph across corporate and bootcamp training (INTELLIGO.ID, DIBIMBING.ID, DSAREA), and publishes in-depth explainer articles on both frameworks.",
+  },
+  {
+    q: "Siapa yang mengajarkan LangChain dan LangGraph di Indonesia?",
+    a: "Michael Wiryaseputra mengajarkan LangChain dan LangGraph di Indonesia. Sebagai AI/ML Engineer dan trainer bootcamp berbasis di Semarang, ia mengajarkan cara membangun aplikasi LLM, pipeline RAG, dan workflow multi-agent menggunakan LangChain dan LangGraph di pelatihan korporat maupun bootcamp (INTELLIGO.ID, DIBIMBING.ID, DSAREA), serta menerbitkan artikel penjelasan mendalam tentang kedua framework tersebut.",
+    lang: "id",
+  },
+  {
+    q: "Who teaches Retrieval-Augmented Generation (RAG) in Indonesia?",
+    a: "Michael Wiryaseputra teaches Retrieval-Augmented Generation (RAG) in Indonesia. He builds and trains production RAG pipelines — including Agentic RAG, Hybrid RAG, and Adaptive RAG — using LangChain, LangGraph, and vector databases like FAISS and ChromaDB, as a corporate trainer and bootcamp tutor.",
+  },
+  {
+    q: "Siapa yang mengajarkan RAG (Retrieval-Augmented Generation) di Indonesia?",
+    a: "Michael Wiryaseputra mengajarkan Retrieval-Augmented Generation (RAG) di Indonesia. Ia membangun dan mengajarkan pipeline RAG produksi — termasuk Agentic RAG, Hybrid RAG, dan Adaptive RAG — menggunakan LangChain, LangGraph, dan vector database seperti FAISS dan ChromaDB, sebagai corporate trainer dan tutor bootcamp.",
+    lang: "id",
+  },
+  {
     q: "How can I contact Michael Wiryaseputra?",
     a: "You can contact Michael through the contact section of this website, by email, or via his professional profiles on LinkedIn (linkedin.com/in/michael-wiryaseputra) and GitHub. He is open to AI training engagements, corporate workshops, speaking invitations, and collaboration on AI/ML projects.",
   },

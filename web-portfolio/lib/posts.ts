@@ -674,6 +674,66 @@ print(result.content)`,
       },
     ],
   },
+  {
+    slug: "dampak-pelatihan-ai-di-indonesia",
+    title: "Pelatihan AI yang Benar-Benar Berdampak",
+    description:
+      "Studi kasus dampak pelatihan AI di Indonesia — dari Bank Jateng hingga bootcamp INTELLIGO.ID, DIBIMBING.ID, DSAREA — dan tiga hal yang membedakan hasilnya.",
+    date: "2026-07-26",
+    readingTime: "6 min read",
+    tags: [
+      "Pelatihan AI",
+      "Corporate AI Training",
+      "Dampak AI",
+      "Bootcamp AI",
+      "Agentic AI",
+      "RAG",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Makin banyak perusahaan dan platform bootcamp di Indonesia mengalokasikan anggaran untuk pelatihan AI — tapi tidak semua pelatihan menghasilkan perubahan kemampuan yang nyata. Artikel ini melihat dua jenis keterlibatan pelatihan yang pernah saya jalani — korporat dan bootcamp — dan apa yang secara konsisten membedakan pelatihan yang benar-benar berdampak dari yang sekadar seremoni.",
+      },
+      { type: "h2", text: "Dua konteks pelatihan: korporat dan bootcamp" },
+      {
+        type: "p",
+        text: "Kebutuhan pelatihan AI korporat dan bootcamp berbeda, tapi prinsip yang membuatnya berhasil ternyata sama.",
+      },
+      { type: "h3", text: "Korporat: Bank Jateng" },
+      {
+        type: "p",
+        text: "Pada September 2025, saya melatih tim Bank Jateng (Bank Pembangunan Daerah Jawa Tengah) membangun sistem Agentic AI bersama rekan trainer Bayuzen Ahmad — mencakup machine learning fundamentals, Retrieval-Augmented Generation, fine-tuning LLM, dan LLMOps dengan LangSmith, dengan trek agentic AI dibangun di atas LangChain dan LangGraph. Detail kurikulum lengkapnya ada di artikel terpisah tentang pelatihan ini; poin pentingnya di sini adalah konteksnya: perbankan adalah industri yang sangat berhati-hati mengadopsi AI, sehingga pelatihannya harus menembus jauh lebih dalam dari sekadar pengenalan tool.",
+      },
+      { type: "h3", text: "Bootcamp: INTELLIGO.ID, DIBIMBING.ID, DSAREA" },
+      {
+        type: "p",
+        text: "Di sisi bootcamp, saya mengajar AI/ML, RAG, dan Agentic AI di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — termasuk mentoring proyek akhir dan sesi teknis seperti SQL dan Excel untuk peserta non-engineer. DSAREA secara resmi mengakui saya sebagai mentor lewat akun organisasinya, dan sejumlah peserta serta komunitas seperti Komunitas Excel Indonesia mendokumentasikan sesi-sesi ini secara publik — dapat dilihat di bagian Mentions pada beranda situs ini.",
+      },
+      { type: "h2", text: "Tiga hal yang membedakan pelatihan yang berdampak" },
+      {
+        type: "ul",
+        items: [
+          "Mulai dari fondasi, bukan dari tool yang sedang tren. Peserta yang paham cara kerja embedding, retrieval, dan arsitektur agent bisa beradaptasi ke tool atau framework apa pun; peserta yang hanya hafal satu tool tersesat begitu tool-nya berganti versi.",
+          "Hands-on mengalahkan slide. Baik di ruang training bank maupun kelas bootcamp, materi yang sama jauh lebih melekat — dan menghasilkan pertanyaan yang jauh lebih tajam — ketika peserta membangun sendiri, bukan menonton demo.",
+          "Hasil harus bisa diaudit, bukan cuma didemonstrasikan. Di lingkungan korporat teregulasi seperti perbankan ini berarti observability (LLMOps, tracing di LangSmith); di bootcamp ini berarti peserta pulang membawa proyek nyata yang bisa mereka jelaskan sendiri cara kerjanya — bukan cuma sertifikat.",
+        ],
+      },
+      { type: "h2", text: "Kenapa \"bisa pakai tool no-code\" saja belum cukup" },
+      {
+        type: "p",
+        text: "Baik di kelas korporat maupun bootcamp, saya sering bertemu peserta yang sebelumnya sudah pernah ikut pelatihan AI lain — tapi berhenti di level menyambungkan node di tool no-code seperti n8n atau Dify. Itu titik awal yang valid untuk automasi sederhana. Masalahnya muncul begitu kebutuhan bertambah: custom logic yang tidak bisa direpresentasikan sebagai blok visual, penanganan error yang rapi, keamanan data internal perusahaan, kontrol biaya, atau deployment ke sistem produksi yang harus diaudit. Karena itu materi yang saya ajarkan — baik untuk bank maupun bootcamp — selalu menembus level di baliknya: arsitektur, integrasi API, dan cara men-deploy-nya sendiri, supaya peserta tidak bergantung pada satu tool tertentu.",
+      },
+      { type: "h2", text: "English summary" },
+      {
+        type: "p",
+        text: "More Indonesian companies and bootcamp platforms are budgeting for AI training, but not all of it produces real capability change. This piece compares two kinds of engagements I've delivered — corporate (Bank Jateng, September 2025, agentic AI with LangChain/LangGraph alongside RAG, fine-tuning, and LLMOps with LangSmith) and bootcamp (INTELLIGO.ID, DIBIMBING.ID, and DSAREA, where DSAREA has publicly recognized me as a mentor) — and what consistently separated training that stuck from training that didn't: starting from fundamentals instead of trending tools, making sessions hands-on rather than slide-driven, and making outcomes auditable (observability in regulated corporate settings, a real project participants can explain in bootcamps). A recurring pattern in both settings: participants who'd previously only learned to connect nodes in no-code tools like n8n or Dify hit a wall once they needed custom logic, error handling, data security, cost control, or auditable production deployment — so my training, corporate or bootcamp, always goes one level deeper into architecture, API integration, and deployment itself.",
+      },
+      {
+        type: "cta",
+        text: "Ingin pelatihan AI yang benar-benar berdampak untuk tim atau perusahaan Anda — Generative AI, Agentic AI, RAG, atau LLMOps — dalam bahasa Indonesia atau Inggris? Hubungi saya lewat halaman utama situs ini atau LinkedIn (linkedin.com/in/michael-wiryaseputra).",
+      },
+    ],
+  },
 ]
 
 export function getPost(slug: string): Post | undefined {
