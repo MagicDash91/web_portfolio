@@ -598,6 +598,16 @@ const speakingEvents: {
     color: "from-green-600 to-emerald-500",
     announcement: "https://www.instagram.com/p/DUmlo-AE1P3/",
   },
+  {
+    poster: "/poster4.png",
+    event: "Inside Product Minds — Written Q&A Feature",
+    organizer: "Indonesia Product Conference",
+    venue: "Online",
+    topics: ["Measuring AI Output Quality", "Product Thinking for AI Teams"],
+    color: "from-purple-500 to-fuchsia-500",
+    announcement:
+      "https://www.linkedin.com/posts/inside-product-minds-unpacking-how-product-ugcPost-7488184686251257859-cKs1/",
+  },
 ]
 
 const MENTIONS: {
