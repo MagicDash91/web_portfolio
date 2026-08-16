@@ -697,6 +697,15 @@ const MENTIONS: {
     context: "Free mini bootcamp announcement — Basic Excel & SQL",
     href: "https://www.linkedin.com/posts/komunitas-excel-indonesia_excelindonesia-belajarsql-bootcampgratis-activity-7426436757774032896-UZDi/",
   },
+  {
+    quote:
+      "Michael berpesan bahwa tanpa cara mengukur kualitas output AI secara sistematis, tim hanya menebak.",
+    author: "Indonesia Product Conference",
+    role: "Event organizer — official Instagram account",
+    context: "Indonesia Product Conference 2026 promo, quoting his Inside Product Minds Q&A feature",
+    href: "https://www.instagram.com/p/DbYHoyCk345/",
+    lang: "id",
+  },
 ]
 
 type TechItem =
