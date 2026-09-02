@@ -243,7 +243,30 @@ const experiences: {
   color: string
   tags: string[]
   link?: string
+  images?: { src: string; alt: string; width: number; height: number }[]
 }[] = [
+  {
+    title: "AI Mentor",
+    company: "SAMSUNG SOLVE FOR TOMORROW × DIBIMBING.ID",
+    date: "Aug 2026 – Present",
+    desc: "Mentoring a university student team (Supernova) in Samsung Solve for Tomorrow Indonesia 2026, guiding development of an AI-powered learning companion app — including evaluating tiny/edge LLMs (Qwen2.5-0.5B-Instruct, LFM2.5-350M, Gemma 3 270M-IT) for on-device use and advising on fine-tuning vs. model-switching tradeoffs.",
+    color: "from-indigo-500 to-violet-600",
+    tags: ["Mentoring", "Edge LLM", "Product Strategy"],
+    images: [
+      {
+        src: "/samsung-solve-concept.jpg",
+        alt: "Supernova team concept app, mentored by Michael Wiryaseputra at Samsung Solve for Tomorrow 2026",
+        width: 860,
+        height: 399,
+      },
+      {
+        src: "/samsung-solve-chat.jpg",
+        alt: "Michael Wiryaseputra's tiny LLM model recommendations for the Samsung Solve for Tomorrow mentee team",
+        width: 320,
+        height: 742,
+      },
+    ],
+  },
   {
     title: "AI/ML Bootcamp Tutor",
     company: "INTELLIGO.ID",
@@ -425,6 +448,21 @@ function ExperienceCard({ exp }: { exp: (typeof experiences)[number] }) {
               </motion.span>
             ))}
           </motion.div>
+          {exp.images && (
+            <motion.div variants={cardStagger} className="grid grid-cols-2 gap-2 mt-4">
+              {exp.images.map((img) => (
+                <motion.div key={img.src} variants={cardItem} className="rounded-lg overflow-hidden border border-white/10">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    className="w-full h-auto"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
       </motion.div>
     </TiltCard>
   )
@@ -607,6 +645,16 @@ const speakingEvents: {
     color: "from-purple-500 to-fuchsia-500",
     announcement:
       "https://www.linkedin.com/posts/inside-product-minds-unpacking-how-product-ugcPost-7488184686251257859-cKs1/",
+  },
+  {
+    poster: "/poster5.png",
+    event: "Menyusun Strategi Personal Brand: Brainstorming dengan AI",
+    organizer: "ASSAI",
+    venue: "Online",
+    date: "9 September 2026",
+    topics: ["Personal Branding", "Generative AI", "Content Strategy"],
+    color: "from-sky-500 to-indigo-600",
+    announcement: "https://www.instagram.com/p/DclkntsviF5/",
   },
 ]
 
