@@ -283,6 +283,7 @@ const experiences: {
     desc: "Delivering full-class bootcamp instruction covering comprehensive Data Science and AI/ML curriculum including Machine Learning, NLP, LLMs, RAG frameworks, LLMOps, and data visualization techniques.",
     color: "from-cyan-500 to-blue-600",
     tags: ["Machine Learning", "Data Visualization", "LLMs & RAG"],
+    link: "https://dibimbing.id/layanan/bootcamp/data-science",
   },
   {
     title: "AI/ML & Data Engineer Bootcamp Tutor",
