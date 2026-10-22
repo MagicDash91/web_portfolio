@@ -268,6 +268,14 @@ const experiences: {
     ],
   },
   {
+    title: "AI Web Programming Tutor",
+    company: "IODA ACADEMY",
+    date: "Sep 2026 – Oct 2026",
+    desc: "Taught and mentored participants in Ioda Academy's hybrid bootcamp on building web apps with AI — online sessions plus in-person classes in Semarang, Jawa Tengah — guiding hands-on practice, one-on-one mentoring, and project feedback.",
+    color: "from-amber-500 to-rose-600",
+    tags: ["Generative AI", "Web Apps", "Mentoring"],
+  },
+  {
     title: "AI/ML Bootcamp Tutor",
     company: "INTELLIGO.ID",
     date: "May 2025 – Present",
@@ -656,6 +664,16 @@ const speakingEvents: {
     topics: ["Personal Branding", "Generative AI", "Content Strategy"],
     color: "from-sky-500 to-indigo-600",
     announcement: "https://www.instagram.com/p/DclkntsviF5/",
+  },
+  {
+    poster: "/poster6.jpeg",
+    event: "Behind Mandalika MotoGP 2026: Tech, Cyber & Digital Life in Lombok",
+    organizer: "WTS Cyber Community Talk",
+    venue: "Online (Zoom)",
+    date: "17 October 2026",
+    topics: ["AI, CCTV & Computer Vision", "Tech Behind Large-Scale Events"],
+    color: "from-fuchsia-500 to-purple-700",
+    announcement: "https://www.instagram.com/p/Dei9qzUmq9l/",
   },
 ]
 
