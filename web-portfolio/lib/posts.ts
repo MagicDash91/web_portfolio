@@ -22,6 +22,93 @@ export type Post = {
 
 export const posts: Post[] = [
   {
+    slug: "pelatihan-ai-diskominfo-tegal-telkom-semarang",
+    title: "Pelatihan AI Diskominfo Tegal & Telkom",
+    description:
+      "Studi kasus pelatihan AI untuk Diskominfo Kabupaten Tegal dan Telkom Semarang: ChatGPT, Claude, Gemini, vibe coding, prompt poster, dan keamanan data.",
+    date: "2026-10-26",
+    readingTime: "6 min read",
+    tags: [
+      "Pelatihan AI",
+      "Pelatihan AI Pemerintah",
+      "Generative AI",
+      "Vibe Coding",
+      "Prompt Engineering",
+      "Diskominfo",
+    ],
+    body: [
+      {
+        type: "p",
+        text: "Pada Jumat, 23 Oktober 2026, Telkom Semarang mengundang saya sebagai narasumber sesi Introduction to AI untuk pegawai Diskominfo Kabupaten Tegal dan Telkom Semarang. Topiknya sangat praktis: bagaimana memakai Generative AI — ChatGPT, Claude, dan Gemini — supaya pekerjaan sehari-hari jadi jauh lebih efisien, tanpa mengorbankan keamanan data. Artikel ini adalah studi kasus dari sesi tersebut: apa yang dipraktikkan, apa yang paling menarik perhatian peserta, dan pelajaran untuk instansi pemerintah lain yang ingin memulai pelatihan AI.",
+      },
+      {
+        type: "image",
+        src: "/blog/michael-wiryaseputra-pelatihan-ai-diskominfo-tegal-telkom-semarang.jpg",
+        alt: "Michael Wiryaseputra membawakan sesi Introduction to AI untuk pegawai Diskominfo Kabupaten Tegal dan Telkom Semarang, 23 Oktober 2026",
+        caption:
+          "Sesi Introduction to AI untuk Diskominfo Kabupaten Tegal dan Telkom Semarang, Jumat 23 Oktober 2026.",
+      },
+      { type: "h2", text: "Konteks: kenapa instansi pemerintah perlu pelatihan AI sekarang" },
+      {
+        type: "p",
+        text: "Banyak pegawai sudah mencoba ChatGPT sendiri, tapi pemakaiannya sering berhenti di \"tanya-jawab\" biasa. Padahal pekerjaan di dinas komunikasi dan informatika — membuat materi publikasi, menyusun laporan, sampai membangun aplikasi sederhana untuk layanan internal — adalah jenis pekerjaan yang paling cepat terbantu oleh Generative AI. Di sisi lain, instansi pemerintah memegang data warga, sehingga \"bisa memakai AI\" harus selalu berjalan bersama \"tahu data apa yang tidak boleh dikirim ke AI\". Karena itu sesi ini dirancang praktik langsung, bukan presentasi teori.",
+      },
+      { type: "h2", text: "Apa yang dipraktikkan peserta" },
+      {
+        type: "ul",
+        items: [
+          "Vibe coding dengan Claude — membangun aplikasi dengan cara menjelaskan kebutuhan dalam bahasa sehari-hari, lalu membiarkan AI menulis kodenya. Peserta melihat langsung bagaimana pekerjaan coding yang biasanya makan waktu lama bisa dipercepat drastis, selama kebutuhannya dijelaskan dengan jelas dan hasilnya tetap dicek.",
+          "Membuat poster otomatis dengan ChatGPT — fokusnya bukan sekadar \"minta gambar\", melainkan menyusun prompt yang baik: tujuan poster, target audiens, teks yang wajib muncul, gaya visual, dan ukuran. Prompt yang terstruktur menghasilkan poster yang jauh lebih siap pakai dibanding prompt satu kalimat.",
+          "Menyusun prompt yang terstruktur untuk pekerjaan administrasi — misalnya laporan: memberi AI peran, konteks, format keluaran yang diinginkan, dan batasan, lalu memeriksa ulang hasilnya sebelum dipakai.",
+          "Membandingkan ChatGPT, Claude, dan Gemini — kekuatan dan kelemahan masing-masing, supaya peserta tahu kapan memakai yang mana, bukan terpaku pada satu tool.",
+        ],
+      },
+      { type: "h2", text: "ChatGPT, Claude, atau Gemini: mana yang dipakai untuk apa?" },
+      {
+        type: "p",
+        text: "Pertanyaan ini hampir selalu muncul di pelatihan AI untuk pemula. Jawaban jujurnya: tidak ada satu model yang paling unggul untuk semua pekerjaan. Peta sederhananya, sesuai yang dipraktikkan di sesi ini: ChatGPT praktis untuk pekerjaan kreatif dan visual seperti poster; Claude kuat untuk coding dan vibe coding; Gemini paling nyaman bagi tim yang sehari-hari bekerja di ekosistem Google. Kelemahan yang sama dari ketiganya juga perlu dipahami: semuanya bisa salah dengan sangat meyakinkan, sehingga hasil AI — terutama angka, nama, dan dasar hukum — wajib diverifikasi manusia sebelum dipublikasikan.",
+      },
+      {
+        type: "p",
+        text: "Yang menarik, setelah sesi vibe coding, beberapa peserta menunjukkan minat untuk berlangganan Claude Pro agar bisa memakai model Claude yang lebih kuat untuk vibe coding di pekerjaan mereka. Bagi saya ini indikator yang baik: peserta pulang bukan hanya dengan pengetahuan, tapi dengan gambaran konkret bagaimana AI akan dipakai di meja kerja mereka.",
+      },
+      { type: "h2", text: "Keamanan data: apa yang tidak boleh dikirim ke AI" },
+      {
+        type: "p",
+        text: "Bagian ini sengaja saya tekankan untuk peserta dari instansi pemerintah. Aturan praktisnya: anggap semua yang Anda ketik ke chatbot AI publik sudah keluar dari kendali instansi. Jangan pernah mengirim data pribadi warga (NIK, nomor KK, alamat, nomor telepon), dokumen yang belum boleh dipublikasikan, kata sandi atau kredensial sistem, maupun data internal yang bersifat rahasia. Jika perlu bantuan AI untuk dokumen semacam itu, samarkan atau hapus dulu data sensitifnya. Prinsip ini sejalan dengan semangat UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi.",
+      },
+      {
+        type: "image",
+        src: "/blog/foto-bersama-pelatihan-ai-diskominfo-tegal-telkom-semarang.jpg",
+        alt: "Foto bersama Michael Wiryaseputra dengan peserta pelatihan AI dari Diskominfo Kabupaten Tegal dan Telkom Semarang",
+        caption:
+          "Foto bersama peserta dari Diskominfo Kabupaten Tegal dan Telkom Semarang setelah sesi.",
+      },
+      { type: "h2", text: "Tiga pelajaran untuk instansi yang ingin memulai pelatihan AI" },
+      {
+        type: "ul",
+        items: [
+          "Mulai dari pekerjaan nyata peserta. Poster, laporan, dan aplikasi internal adalah pekerjaan yang benar-benar mereka kerjakan — karena itu hasil praktiknya langsung terasa relevan, berbeda dengan contoh generik.",
+          "Ajarkan lebih dari satu model. Peserta yang memahami kekuatan dan kelemahan ChatGPT, Claude, dan Gemini bisa memilih tool yang tepat, dan tidak bingung ketika satu tool berubah atau berganti versi.",
+          "Keamanan data bukan materi tambahan. Untuk instansi pemerintah, aturan \"data apa yang tidak boleh dikirim ke AI\" harus diajarkan di sesi yang sama dengan cara memakainya.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Jika Anda ingin melihat contoh pelatihan yang lebih teknis untuk tim engineering, baca juga studi kasus \"Pelatihan Agentic AI untuk Bank Jateng\" dan artikel \"Pelatihan AI yang Benar-Benar Berdampak\" di blog ini.",
+      },
+      { type: "h2", text: "English summary" },
+      {
+        type: "p",
+        text: "On Friday, 23 October 2026, Telkom Semarang invited me to speak at an Introduction to AI session for staff of Diskominfo Kabupaten Tegal (the Tegal Regency communications and informatics office, Central Java) and Telkom Semarang. The session focused on using Generative AI — ChatGPT, Claude, and Gemini — to work more efficiently. Participants practiced vibe coding with Claude, writing structured prompts to generate posters with ChatGPT, and structuring prompts for reports; we compared the strengths and weaknesses of the three tools, and covered which data must never be sent to public AI tools, such as citizens' personal data, unpublished documents, and system credentials. Several participants showed interest in subscribing to Claude Pro for vibe coding after the session. Lessons for government institutions: start from participants' real work, teach more than one model, and treat data security as core material rather than an add-on.",
+      },
+      {
+        type: "cta",
+        text: "Ingin pelatihan AI serupa untuk instansi atau perusahaan Anda — Generative AI, vibe coding, prompt engineering, hingga Agentic AI — dalam bahasa Indonesia atau Inggris, online maupun on-site? Hubungi saya lewat halaman utama situs ini atau LinkedIn (linkedin.com/in/michael-wiryaseputra).",
+      },
+    ],
+  },
+  {
     slug: "pelatihan-agentic-ai-bank-jateng",
     title: "Pelatihan Agentic AI untuk Bank Jateng",
     description:

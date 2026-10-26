@@ -246,6 +246,29 @@ const experiences: {
   images?: { src: string; alt: string; width: number; height: number }[]
 }[] = [
   {
+    title: "AI Trainer — Introduction to AI",
+    company: "TELKOM SEMARANG × DISKOMINFO KABUPATEN TEGAL",
+    date: "Oct 2026",
+    desc: "Delivered an Introduction to AI session for Telkom Semarang and Diskominfo Kabupaten Tegal, Jawa Tengah: using Generative AI tools such as Claude for building apps with AI (vibe coding) and ChatGPT for poster design and report writing, writing clear and structured prompts, and which private or sensitive data must never be sent to AI tools.",
+    color: "from-red-500 to-rose-600",
+    tags: ["Generative AI", "Prompting", "Data Privacy"],
+    link: "/blog/pelatihan-ai-diskominfo-tegal-telkom-semarang",
+    images: [
+      {
+        src: "/telkom-tegal-session.jpg",
+        alt: "Michael Wiryaseputra presenting Introduction to AI to Diskominfo Kabupaten Tegal staff at Telkom Semarang",
+        width: 1280,
+        height: 960,
+      },
+      {
+        src: "/telkom-tegal-group.jpg",
+        alt: "Group photo of Michael Wiryaseputra with Telkom Semarang and Diskominfo Kabupaten Tegal participants",
+        width: 1280,
+        height: 960,
+      },
+    ],
+  },
+  {
     title: "AI Mentor",
     company: "SAMSUNG SOLVE FOR TOMORROW × DIBIMBING.ID",
     date: "Aug 2026 – Present",
@@ -434,7 +457,11 @@ function ExperienceCard({ exp }: { exp: (typeof experiences)[number] }) {
             variants={cardItem}
             className={`text-sm font-bold bg-gradient-to-r ${exp.color} bg-clip-text text-transparent mb-3`}
           >
-            {exp.link ? (
+            {exp.link?.startsWith("/") ? (
+              <Link href={exp.link} className="hover:underline">
+                {exp.company}
+              </Link>
+            ) : exp.link ? (
               <a href={exp.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
                 {exp.company}
               </a>
