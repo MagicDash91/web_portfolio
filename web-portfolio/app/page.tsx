@@ -702,6 +702,16 @@ const speakingEvents: {
     color: "from-fuchsia-500 to-purple-700",
     announcement: "https://www.instagram.com/p/Dei9qzUmq9l/",
   },
+  {
+    poster: "/poster7.png",
+    event: "Tech Corner — Beyond Basic RAG: Building Smart AI Agents",
+    organizer: "Jagoan Hosting",
+    venue: "Online (Zoom)",
+    date: "31 October 2026",
+    topics: ["Agentic AI", "Beyond Basic RAG", "Building AI Agents"],
+    color: "from-orange-500 to-red-600",
+    announcement: "https://www.instagram.com/p/De8zw4XCHSO/",
+  },
 ]
 
 const MENTIONS: {
