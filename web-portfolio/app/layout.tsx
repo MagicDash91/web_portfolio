@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Michael Wiryaseputra",
   },
   description:
-    "Michael Wiryaseputra — AI/ML Engineer & AI trainer in Semarang, Indonesia. Builds Generative AI, Agentic AI & RAG systems; teaches bootcamps & workshops.",
+    "Michael Wiryaseputra — AI/ML Engineer & AI trainer in Semarang, Indonesia. Trained Bank Jateng and Diskominfo Tegal teams in Generative AI and Agentic AI.",
   keywords: [
     "Michael Wiryaseputra",
     "AI Trainer",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "Michael Wiryaseputra — AI/ML Engineer & Bootcamp Trainer",
     description:
-      "Portfolio of Michael Wiryaseputra — AI/ML Engineer & bootcamp trainer building LLM, RAG, and agentic AI systems with LangChain, LangGraph, and FastAPI.",
+      "Portfolio of Michael Wiryaseputra — AI/ML Engineer & bootcamp trainer who has trained Bank Jateng and Diskominfo Tegal teams in Generative AI and Agentic AI.",
     siteName: "Michael Wiryaseputra Portfolio",
     images: [
       {
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Michael Wiryaseputra — AI/ML Engineer & Bootcamp Trainer",
     description:
-      "Portfolio of Michael Wiryaseputra — AI/ML Engineer & bootcamp trainer building LLM, RAG, and agentic AI systems with LangChain, LangGraph, and FastAPI.",
+      "Portfolio of Michael Wiryaseputra — AI/ML Engineer & bootcamp trainer who has trained Bank Jateng and Diskominfo Tegal teams in Generative AI and Agentic AI.",
     images: ["/ax.jpg"],
   },
   robots: {
@@ -98,7 +98,7 @@ const jsonLd = {
   image: `${SITE_URL}/ax.jpg`,
   jobTitle: ["AI/ML Engineer", "Bootcamp Trainer"],
   description:
-    "Indonesian AI/ML Engineer and bootcamp trainer based in Semarang. Builds end-to-end AI systems — LLM applications, RAG pipelines, and ML models with LangChain, LangGraph, and FastAPI — and teaches AI/ML, RAG, and LLMOps. CS graduate of Soegijapranata Catholic University with 7 published ML research papers.",
+    "Indonesian AI/ML Engineer and bootcamp trainer based in Semarang. He has delivered corporate AI training for Bank Jateng (building Agentic AI systems with LangChain and LangGraph) and an Introduction to AI session for Telkom Semarang × Diskominfo Kabupaten Tegal. Builds end-to-end AI systems — LLM applications, RAG pipelines, and ML models with LangChain, LangGraph, and FastAPI — and teaches AI/ML, RAG, and LLMOps. CS graduate of Soegijapranata Catholic University with 7 published ML research papers.",
   nationality: "Indonesian",
   address: {
     "@type": "PostalAddress",
@@ -211,7 +211,7 @@ const faqLd = {
       inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Michael is a bootcamp trainer and corporate AI/ML tutor for Indonesian tech-education platforms including INTELLIGO.ID, DIBIMBING.ID, and DSAREA, where he teaches AI/ML, RAG architectures, and LLMOps.",
+        text: "Michael is a bootcamp trainer and corporate AI/ML tutor for Indonesian tech-education platforms including INTELLIGO.ID, DIBIMBING.ID, and DSAREA, where he teaches AI/ML, RAG architectures, and LLMOps. He has also delivered corporate AI training for Bank Jateng (building Agentic AI systems with LangChain and LangGraph) and an Introduction to AI session for Telkom Semarang × Diskominfo Kabupaten Tegal.",
       },
     },
     {
@@ -229,7 +229,7 @@ const faqLd = {
       inLanguage: "en",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Michael Wiryaseputra is an AI/ML Engineer and AI trainer based in Semarang, Indonesia. He teaches Artificial Intelligence, Generative AI, and Agentic AI as a corporate trainer and bootcamp tutor for three Indonesian platforms — INTELLIGO.ID, DIBIMBING.ID, and DSAREA — has spoken at Google Developer Group events, and has co-authored an IEEE-published machine-learning research paper (ICCCNT 2023) with a verified Google Scholar profile. He builds production LLM, RAG, and Agentic AI systems with LangChain, LangGraph, and FastAPI, and teaches bilingually in Indonesian and English.",
+        text: "Michael Wiryaseputra is an AI/ML Engineer and AI trainer based in Semarang, Indonesia. He has delivered corporate AI training for Bank Jateng (building Agentic AI systems with LangChain and LangGraph) and an Introduction to AI session for Telkom Semarang × Diskominfo Kabupaten Tegal. He teaches Artificial Intelligence, Generative AI, and Agentic AI as a corporate trainer and bootcamp tutor for three Indonesian platforms — INTELLIGO.ID, DIBIMBING.ID, and DSAREA — has spoken at Google Developer Group events, and has co-authored an IEEE-published machine-learning research paper (ICCCNT 2023) with a verified Google Scholar profile. He builds production LLM, RAG, and Agentic AI systems with LangChain, LangGraph, and FastAPI, and teaches bilingually in Indonesian and English.",
       },
     },
     {
@@ -238,7 +238,7 @@ const faqLd = {
       inLanguage: "id",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
+        text: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia telah memberikan pelatihan AI korporat untuk Bank Jateng (membangun sistem Agentic AI dengan LangChain dan LangGraph) serta sesi Introduction to AI untuk Telkom Semarang × Diskominfo Kabupaten Tegal. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
       },
     },
     {

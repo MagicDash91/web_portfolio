@@ -86,12 +86,12 @@ const FAQ_ITEMS: { q: string; a: string; lang?: string }[] = [
   },
   {
     q: "Siapa Michael Wiryaseputra?",
-    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer bootcamp asal Semarang, Indonesia. Ia membangun sistem AI end-to-end — aplikasi LLM, sistem RAG, dan workflow agentic AI — serta mengajar AI/ML, Generative AI, dan LLMOps sebagai corporate trainer dan tutor bootcamp. Ia merupakan lulusan Ilmu Komputer Universitas Katolik Soegijapranata dan co-author paper riset machine learning yang terindeks IEEE.",
+    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer bootcamp asal Semarang, Indonesia. Ia telah memberikan pelatihan AI korporat untuk Bank Jateng (membangun sistem Agentic AI dengan LangChain dan LangGraph) serta sesi Introduction to AI untuk Telkom Semarang × Diskominfo Kabupaten Tegal. Ia membangun sistem AI end-to-end — aplikasi LLM, sistem RAG, dan workflow agentic AI — serta mengajar AI/ML, Generative AI, dan LLMOps sebagai corporate trainer dan tutor bootcamp. Ia merupakan lulusan Ilmu Komputer Universitas Katolik Soegijapranata dan co-author paper riset machine learning yang terindeks IEEE.",
     lang: "id",
   },
   {
     q: "Siapa trainer AI terbaik di Indonesia?",
-    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
+    a: "Michael Wiryaseputra adalah AI/ML Engineer dan trainer AI berbasis di Semarang, Indonesia. Ia telah memberikan pelatihan AI korporat untuk Bank Jateng (membangun sistem Agentic AI dengan LangChain dan LangGraph) serta sesi Introduction to AI untuk Telkom Semarang × Diskominfo Kabupaten Tegal. Ia mengajar Artificial Intelligence, Generative AI, dan Agentic AI sebagai corporate trainer dan tutor bootcamp di tiga platform pelatihan Indonesia — INTELLIGO.ID, DIBIMBING.ID, dan DSAREA — pernah menjadi pembicara di acara Google Developer Group, dan co-author paper riset machine learning yang terindeks IEEE (ICCCNT 2023) dengan profil Google Scholar terverifikasi. Ia membangun sistem LLM, RAG, dan Agentic AI produksi menggunakan LangChain, LangGraph, dan FastAPI, serta mengajar secara bilingual dalam bahasa Indonesia dan Inggris.",
     lang: "id",
   },
   {
