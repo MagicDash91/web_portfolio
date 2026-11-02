@@ -13,6 +13,9 @@ export default function BlogLayout({ children }: { children: ReactNode }) {
             Michael Wiryaseputra
           </Link>
           <div className="flex items-center gap-6 text-sm text-white/70">
+            <Link href="/pelatihan-ai-perusahaan" className="hover:text-white transition-colors">
+              Corporate Training
+            </Link>
             <Link href="/blog" className="hover:text-white transition-colors">
               Blog
             </Link>
