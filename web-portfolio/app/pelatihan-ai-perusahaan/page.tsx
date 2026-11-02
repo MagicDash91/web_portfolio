@@ -160,7 +160,10 @@ const TALKS: { event: string; organizer: string; date?: string; href: string }[]
 
 const FORMAT: [string, string][] = [
   ["Level materi", "Dari nol tanpa coding hingga teknis untuk developer, disesuaikan dengan kemampuan peserta."],
-  ["Lokasi", "Tatap muka di Semarang dan Jawa Tengah, online untuk seluruh Indonesia, atau hybrid."],
+  [
+    "Lokasi",
+    "Tatap muka di Semarang dan Jawa Tengah. Tatap muka di kota lain (Jakarta, Bandung, Surabaya, dan lainnya) tetap bisa, dengan biaya tambahan. Online untuk seluruh Indonesia, atau hybrid.",
+  ],
   ["Bahasa", "Bahasa Indonesia atau English."],
   ["Gaya belajar", "Praktik langsung dengan contoh pekerjaan peserta, bukan hanya teori dan slide."],
 ]
@@ -177,6 +180,10 @@ const FAQS: { q: string; a: string }[] = [
   {
     q: "Apakah pelatihan bisa dilakukan online atau tatap muka?",
     a: "Keduanya. Sesi tatap muka tersedia di Semarang dan Jawa Tengah, sedangkan sesi online bisa diikuti tim di seluruh Indonesia. Format hybrid juga bisa dibahas sesuai kebutuhan.",
+  },
+  {
+    q: "Apakah pelatihan tatap muka bisa diadakan di luar Semarang, misalnya di Jakarta, Bandung, atau Surabaya?",
+    a: "Bisa. Pelatihan tatap muka dapat diadakan di kota lain seperti Jakarta, Bandung, Surabaya, atau kota lainnya di Indonesia, dengan biaya tambahan untuk pelaksanaan di luar Semarang. Detail biaya dibahas saat menyusun rencana pelatihan.",
   },
   {
     q: "Pelatihan dibawakan dalam bahasa apa?",
@@ -212,7 +219,7 @@ const pageLd = {
       name: "Corporate AI Training — Pelatihan AI untuk Perusahaan",
       serviceType: "Corporate AI training",
       description:
-        "Corporate AI training by Michael Wiryaseputra, AI/ML Engineer & Bootcamp Trainer based in Semarang, Jawa Tengah, Indonesia: Generative AI for everyday productivity, building AI applications with LangChain, and Agentic AI with LangGraph. Beginner-friendly or technical, delivered on-site or online in Bahasa Indonesia or English.",
+        "Corporate AI training by Michael Wiryaseputra, AI/ML Engineer & Bootcamp Trainer based in Semarang, Jawa Tengah, Indonesia: Generative AI for everyday productivity, building AI applications with LangChain, and Agentic AI with LangGraph. Beginner-friendly or technical, delivered on-site in Semarang and Central Java, on-site in other Indonesian cities such as Jakarta, Bandung, or Surabaya (additional fee), or online, in Bahasa Indonesia or English.",
       url: PAGE_URL,
       provider: { "@id": `${SITE_URL}/#person` },
       isRelatedTo: { "@id": `${SITE_URL}/#service` },
@@ -285,8 +292,8 @@ export default function CorporateTrainingPage() {
           Materi bisa dibuat <strong className="text-slate-200">mudah untuk pemula</strong> (memakai Generative AI
           agar pekerjaan lebih cepat, tanpa coding) atau{" "}
           <strong className="text-slate-200">teknis untuk developer</strong> (LangChain dan LangGraph dengan Python).
-          Tatap muka di Semarang dan Jawa Tengah, atau online untuk tim di seluruh Indonesia, dalam Bahasa Indonesia
-          atau English.
+          Tatap muka di Semarang dan Jawa Tengah, tatap muka di kota lain seperti Jakarta, Bandung, dan Surabaya
+          (dengan biaya tambahan), atau online untuk tim di seluruh Indonesia, dalam Bahasa Indonesia atau English.
         </p>
         <div className="flex flex-wrap gap-3 mb-6">
           <a
@@ -498,7 +505,8 @@ export default function CorporateTrainingPage() {
           ))}
         </ul>
         <p className="text-slate-400 leading-relaxed">
-          Delivered on-site in Semarang and Central Java or online across Indonesia, in Bahasa Indonesia or English.
+          Delivered on-site in Semarang and Central Java, on-site in other cities such as Jakarta, Bandung, or
+          Surabaya (additional fee applies), or online across Indonesia, in Bahasa Indonesia or English.
           Contact:{" "}
           <a href="mailto:michwirja@gmail.com" className={extLink}>
             michwirja@gmail.com
