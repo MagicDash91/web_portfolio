@@ -723,6 +723,15 @@ const MENTIONS: {
   lang?: string
 }[] = [
   {
+    quote:
+      "Michael Wiryaseputra mengajar AI dan machine learning lewat bootcamp serta pelatihan teknis.",
+    author: "Ailene (Akmal Luthfiansyah)",
+    role: "Editorial — biz.ailene.id",
+    context: "Listed #8 in “10 Rekomendasi AI Trainer Terbaik di Indonesia 2026”",
+    href: "https://biz.ailene.id/articles/rekomendasi-ai-trainer-terbaik-indonesia-2026/56#8-michael-wiryaseputra-jalur-teknis-ai-dan-machine-learning",
+    lang: "id",
+  },
+  {
     quote: "Mentor: Michael Wiryaseputra (AI/ML Engineer)",
     author: "DSAREA (digitalskillsarea)",
     role: "Indonesian tech bootcamp — official account",
